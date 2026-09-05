@@ -1,9 +1,11 @@
-import { Link, createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 
 import consultingImg from "@/assets/consulting.jpg";
-import softwareImg from "@/assets/software.jpg";
 import teamImg from "@/assets/hero-team.jpg";
+import softwareImg from "@/assets/software.jpg";
+import { CtaBand } from "@/components/site/CtaBand";
 import { PageHero } from "@/components/site/PageHero";
+import { Reveal } from "@/components/site/Reveal";
 
 export const Route = createFileRoute("/leistungen")({
   head: () => ({
@@ -27,37 +29,58 @@ export const Route = createFileRoute("/leistungen")({
 
 const blocks = [
   {
+    id: "it-consulting",
     title: "IT-Consulting",
     image: consultingImg,
-    text: "Wir bewerten Ihre IT-Landschaft, priorisieren Handlungsfelder und entwerfen eine Roadmap, die zu Budget und Organisation passt.",
-    points: [
-      "IST-Analyse und Systembewertung",
-      "Architektur- und Technologieentscheidungen",
+    text: "Wir bewerten Ihre Systemlandschaft, priorisieren Handlungsfelder und entwerfen eine Roadmap, die zu Budget, Team und Organisation passt.",
+    deliverables: [
+      "IST-Analyse mit Risikobewertung",
+      "Zielarchitektur und Technologieentscheidung",
       "Make-or-Buy und Anbieterauswahl",
-      "Digitalisierungs-Roadmap mit Aufwandsschätzung",
+      "Roadmap mit Aufwands- und Nutzenschätzung",
     ],
+    questions: [
+      "Welche Systeme bremsen uns wirklich?",
+      "Kaufen oder selbst entwickeln?",
+      "Was zuerst, was später?",
+    ],
+    tools: ["Architektur-Reviews", "TCO-Analysen", "Zielbild-Workshops"],
   },
   {
+    id: "softwareentwicklung",
     title: "Softwareentwicklung",
     image: softwareImg,
-    text: "Individuelle Anwendungen, Schnittstellen und Automatisierungen – entwickelt in kleinen Teams mit klaren Qualitätsstandards.",
-    points: [
+    text: "Individuelle Anwendungen, Schnittstellen und Automatisierung – entwickelt in kleinen Teams mit Tests, Reviews und nachvollziehbarer Dokumentation.",
+    deliverables: [
       "Web-Anwendungen und Fachverfahren",
       "API- und Integrationsentwicklung",
       "Datenmigration und Altsystem-Ablösung",
       "Wartung, Support und Weiterentwicklung",
     ],
+    questions: [
+      "Wie lösen wir das Altsystem ohne Stillstand ab?",
+      "Wie binden wir Partner sauber an?",
+      "Wer kann die Software später betreuen?",
+    ],
+    tools: ["TypeScript & React", "Node.js & PostgreSQL", "CI/CD & automatisierte Tests"],
   },
   {
+    id: "projekt-prozess-qualitaet",
     title: "Projekt-, Prozess- & Qualitätsmanagement",
     image: teamImg,
-    text: "Wir übernehmen Projektleitung, richten Prozesse neu aus und etablieren Qualitätssicherung, die im Alltag wirklich gelebt wird.",
-    points: [
+    text: "Wir übernehmen Projektleitung, richten Prozesse neu aus und etablieren Qualitätssicherung, die im Alltag tatsächlich gelebt wird.",
+    deliverables: [
       "Projektleitung klassisch, agil oder hybrid",
       "Prozessaufnahme, -modellierung und -optimierung",
       "Qualitätsstandards, Reviews und interne Audits",
       "Kennzahlen und Reporting für die Geschäftsführung",
     ],
+    questions: [
+      "Warum dauert alles länger als geplant?",
+      "Welche drei Kennzahlen brauchen wir wirklich?",
+      "Wie bestehen wir das nächste Audit ruhig?",
+    ],
+    tools: ["Scrum & PRINCE2", "BPMN-Modellierung", "Audit- und Reviewverfahren"],
   },
 ];
 
@@ -66,58 +89,77 @@ function Leistungen() {
     <>
       <PageHero
         eyebrow="Leistungen"
-        title="Beratung und Umsetzung – aus einer Hand"
+        title="Beratung und Umsetzung aus einer Hand"
         intro="Wir arbeiten dort, wo Strategie, Technik und Organisation zusammentreffen. Das spart Übergaben, Reibung und Zeit."
       />
 
       <div className="section">
-        <div className="container-page space-y-20">
+        <div className="container-page space-y-6">
           {blocks.map((block, i) => (
-            <section
-              key={block.title}
-              className={`grid items-center gap-10 md:grid-cols-2 ${i % 2 === 1 ? "md:[&>div:first-child]:order-2" : ""}`}
-            >
-              <div className="overflow-hidden rounded-2xl border border-border">
-                <img
-                  src={block.image}
-                  alt={block.title}
-                  width={1408}
-                  height={1008}
-                  loading="lazy"
-                  className="h-full w-full object-cover"
-                />
+            <Reveal key={block.id} delay={i * 60} className="tile overflow-hidden">
+              <div className="grid lg:grid-cols-[1.05fr_1fr]">
+                <div className="p-8 md:p-12">
+                  <p className="eyebrow">0{i + 1}</p>
+                  <h2 className="mt-4 font-display text-2xl md:text-4xl">{block.title}</h2>
+                  <p className="mt-5 text-muted-foreground">{block.text}</p>
+
+                  <div className="mt-9 grid gap-8 sm:grid-cols-2">
+                    <div>
+                      <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                        Ergebnisse
+                      </h3>
+                      <ul className="mt-4 space-y-2.5 text-sm">
+                        {block.deliverables.map((d) => (
+                          <li key={d} className="flex gap-3 text-muted-foreground">
+                            <span className="mt-2 size-1 shrink-0 rounded-full bg-brand" />
+                            {d}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                        Typische Fragen
+                      </h3>
+                      <ul className="mt-4 space-y-3 text-sm italic text-muted-foreground">
+                        {block.questions.map((q) => (
+                          <li key={q}>„{q}"</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="mt-9 flex flex-wrap gap-2">
+                    {block.tools.map((tool) => (
+                      <span
+                        key={tool}
+                        className="rounded-full border border-hairline bg-surface px-3.5 py-1.5 text-xs text-muted-foreground"
+                      >
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="min-h-64 border-t border-hairline lg:border-l lg:border-t-0">
+                  <img
+                    src={block.image}
+                    alt={block.title}
+                    width={1408}
+                    height={1008}
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
               </div>
-              <div>
-                <h2 className="text-2xl font-bold md:text-3xl">{block.title}</h2>
-                <p className="mt-4 text-muted-foreground">{block.text}</p>
-                <ul className="mt-6 space-y-3 text-sm">
-                  {block.points.map((p) => (
-                    <li key={p} className="flex gap-3">
-                      <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" />
-                      <span className="text-muted-foreground">{p}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </section>
+            </Reveal>
           ))}
         </div>
       </div>
 
-      <section className="border-t border-border bg-secondary/40 py-16">
-        <div className="container-page text-center">
-          <h2 className="text-2xl font-bold md:text-3xl">Passt eine dieser Leistungen zu Ihrem Vorhaben?</h2>
-          <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            Schreiben Sie uns kurz, worum es geht – wir melden uns mit einer ersten Einschätzung.
-          </p>
-          <Link
-            to="/kontakt"
-            className="mt-8 inline-flex rounded-full bg-brand px-6 py-3 text-sm font-semibold text-brand-foreground"
-          >
-            Kontakt aufnehmen
-          </Link>
-        </div>
-      </section>
+      <CtaBand
+        title="Passt eine dieser Leistungen zu Ihrem Vorhaben?"
+        text="Schreiben Sie uns kurz, worum es geht – wir melden uns mit einer ersten Einschätzung."
+      />
     </>
   );
 }
