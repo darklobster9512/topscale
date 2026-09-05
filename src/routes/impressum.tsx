@@ -62,6 +62,13 @@ function Impressum() {
           </div>
           <div>
             <h2 className="text-lg font-semibold text-foreground">
+              Umsatzsteuer-Identifikationsnummer
+            </h2>
+            <p className="mt-2">USt-IdNr. gemäß § 27 a UStG: DE175401054</p>
+          </div>
+
+          <div>
+            <h2 className="text-lg font-semibold text-foreground">
               Verantwortlich für den Inhalt
             </h2>
             <p className="mt-2">Sebastian Yrjö Küpper, Adresse wie oben.</p>
