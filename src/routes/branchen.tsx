@@ -9,7 +9,7 @@ import { industries } from "@/data/content";
 export const Route = createFileRoute("/branchen")({
   head: () => ({
     meta: [
-      { title: "Branchen – Handel, Logistik, Industrie & Verwaltung | Topscale GmbH" },
+      { title: "Branchen: Handel, Logistik, Industrie | Topscale" },
       {
         name: "description",
         content:
@@ -20,10 +20,14 @@ export const Route = createFileRoute("/branchen")({
         property: "og:description",
         content: "Wo wir zu Hause sind: Handel, Logistik, Industrie, Verwaltung und Finanzdienstleistung.",
       },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/branchen" },
     ],
+    links: [{ rel: "canonical", href: "/branchen" }],
   }),
   component: Branchen,
 });
+
 
 function Branchen() {
   return (
