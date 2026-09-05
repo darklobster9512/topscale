@@ -27,6 +27,14 @@ const employmentTypes = [
   { value: "werkstudium", label: "Werkstudium" },
 ];
 
+const RESTRICTED_JOB_TITLE = "Online-Prozesstester:in für digitale Anwendungen (m/w/d)";
+const RESTRICTED_TYPES = ["teilzeit", "minijob"];
+
+const typesForJob = (stelle: string) =>
+  stelle === RESTRICTED_JOB_TITLE
+    ? employmentTypes.filter((type) => RESTRICTED_TYPES.includes(type.value))
+    : employmentTypes;
+
 export const Route = createFileRoute("/karriere/bewerbung")({
   validateSearch: (search: Record<string, unknown>) => ({
     stelle: typeof search["stelle"] === "string" ? search["stelle"] : "",
@@ -173,7 +181,17 @@ function Bewerbung() {
                 <Label>Stelle</Label>
                 <Select
                   value={form.stelle}
-                  onValueChange={(value) => setForm({ ...form, stelle: value })}
+                  onValueChange={(value) =>
+                    setForm({
+                      ...form,
+                      stelle: value,
+                      anstellungsart: typesForJob(value).some(
+                        (type) => type.value === form.anstellungsart,
+                      )
+                        ? form.anstellungsart
+                        : "",
+                    })
+                  }
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Stelle auswählen (optional)" />
@@ -199,13 +217,18 @@ function Bewerbung() {
                     <SelectValue placeholder="Bitte wählen" />
                   </SelectTrigger>
                   <SelectContent>
-                    {employmentTypes.map((type) => (
+                    {typesForJob(form.stelle).map((type) => (
                       <SelectItem key={type.value} value={type.value}>
                         {type.label}
                       </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
+                {form.stelle === RESTRICTED_JOB_TITLE ? (
+                  <p className="text-xs text-muted-foreground">
+                    Für diese Stelle sind nur Teilzeit und Minijob möglich.
+                  </p>
+                ) : null}
               </div>
 
               <p className="text-xs text-muted-foreground">
