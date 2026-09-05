@@ -26,6 +26,20 @@ export const Route = createFileRoute("/team")({
   component: Team,
 });
 
+const teamFacts = [
+  { value: `${team.length}`, label: "Kolleginnen und Kollegen" },
+  { value: `${teamGroups.length}`, label: "Fachbereiche" },
+  { value: "2009", label: "gegründet in Hamburg" },
+];
+
+function spanFor(n: number, i: number) {
+  if (n === 1) return "lg:col-span-6";
+  if (n === 2 || n === 4) return "lg:col-span-3";
+  if (n === 3) return "lg:col-span-2";
+  if (n === 5) return i < 3 ? "lg:col-span-2" : "lg:col-span-3";
+  return "lg:col-span-2";
+}
+
 function Team() {
   return (
     <>
@@ -35,52 +49,59 @@ function Team() {
         intro="Bei uns arbeiten Beratung, Entwicklung und Qualitätsmanagement in einem Haus. Sie behalten vom Erstgespräch bis zur Übergabe dieselben Ansprechpartner."
       />
 
-      {teamGroups.map((group, gi) => {
-        const members = team.filter((m) => m.group === group);
-        const n = members.length;
-        const gridCols =
-          n === 1
-            ? "grid-cols-1"
-            : n === 2
-              ? "sm:grid-cols-2"
-              : n === 3
-                ? "sm:grid-cols-2 lg:grid-cols-3"
-                : n === 4
-                  ? "sm:grid-cols-2 lg:grid-cols-4"
-                  : "sm:grid-cols-2 lg:grid-cols-6";
-        const spanFor = (i: number) => (n >= 5 ? (i < 3 ? "lg:col-span-2" : "lg:col-span-3") : "");
-        return (
-          <section
-            key={group}
-            className={
-              gi % 2 === 1 ? "section border-t border-hairline bg-surface/60" : "section border-t border-hairline"
-            }
-          >
-            <div className="container-page">
-              <Reveal>
-                <p className="eyebrow">{group}</p>
-                <p className="mt-3 text-sm text-muted-foreground">
-                  {n} {n === 1 ? "Person" : "Personen"}
-                </p>
-              </Reveal>
-              <div className={`mt-8 grid items-stretch gap-5 ${gridCols}`}>
-                {members.map((member, i) => (
-                  <Reveal
-                    key={member.name}
-                    delay={60 + i * 50}
-                    className={`tile flex h-full flex-col p-7 ${n === 1 ? "sm:flex-row sm:items-center sm:justify-between" : ""} ${spanFor(i)}`}
-                  >
-                    <h2 className="font-display text-lg">{member.name}</h2>
-                    <p className={`text-sm text-muted-foreground ${n === 1 ? "mt-2 sm:mt-0" : "mt-2"}`}>{member.role}</p>
-                  </Reveal>
-                ))}
-              </div>
+      <section className="border-b border-hairline bg-surface/60">
+        <div className="container-page grid grid-cols-3 divide-x divide-hairline">
+          {teamFacts.map((fact) => (
+            <div key={fact.label} className="px-2 py-6 text-center first:pl-0 last:pr-0">
+              <p className="font-display text-2xl md:text-3xl">{fact.value}</p>
+              <p className="mt-1 text-xs text-muted-foreground md:text-sm">{fact.label}</p>
             </div>
-          </section>
-        );
-      })}
+          ))}
+        </div>
+      </section>
 
-      <section className="section border-t border-hairline">
+      <section className="section">
+        <div className="container-page space-y-14">
+          {teamGroups.map((group) => {
+            const members = team.filter((m) => m.group === group);
+            const n = members.length;
+            return (
+              <div key={group}>
+                <Reveal className="flex flex-wrap items-baseline justify-between gap-3 border-b border-hairline pb-4">
+                  <h2 className="font-display text-xl md:text-2xl">{group}</h2>
+                  <p className="text-sm text-muted-foreground">
+                    {n} {n === 1 ? "Person" : "Personen"}
+                  </p>
+                </Reveal>
+
+                <div className="mt-6 grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-6">
+                  {members.map((member, i) => (
+                    <Reveal
+                      key={member.name}
+                      delay={40 + i * 45}
+                      className={`tile group flex h-full gap-4 p-6 ${spanFor(n, i)}`}
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="grid size-12 shrink-0 place-items-center rounded-full bg-brand/10 font-display text-sm text-brand transition-colors group-hover:bg-brand group-hover:text-primary-foreground"
+                      >
+                        {initialsOf(member.name)}
+                      </span>
+                      <div className="min-w-0">
+                        <h3 className="font-display text-base leading-snug">{member.name}</h3>
+                        <p className="mt-1 text-sm text-brand">{member.role}</p>
+                        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{member.focus}</p>
+                      </div>
+                    </Reveal>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="section border-t border-hairline bg-surface/60">
         <div className="container-page">
           <Reveal className="tile p-8 md:p-10">
             <h2 className="max-w-2xl text-2xl md:text-3xl">Wir wachsen weiter – ruhig und bewusst</h2>
@@ -88,10 +109,7 @@ function Team() {
               Neue Kolleginnen und Kollegen werden bei uns strukturiert eingearbeitet: fester Pate, klarer Plan für die
               ersten Wochen, echte Projektverantwortung erst danach.
             </p>
-            <Link
-              to="/karriere"
-              className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-brand"
-            >
+            <Link to="/karriere" className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-brand">
               Offene Stellen ansehen <ArrowRight className="size-4" />
             </Link>
           </Reveal>
@@ -102,3 +120,4 @@ function Team() {
     </>
   );
 }
+
