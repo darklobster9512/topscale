@@ -1,8 +1,10 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Clock, GraduationCap, Heart, MapPin } from "lucide-react";
+import { useState } from "react";
 
 import careerImg from "@/assets/career.jpg";
 import { PageHero } from "@/components/site/PageHero";
+import { Reveal } from "@/components/site/Reveal";
 import { jobs } from "@/data/jobs";
 
 export const Route = createFileRoute("/karriere/")({
@@ -31,7 +33,18 @@ const benefits = [
   { icon: MapPin, title: "Bestes Büro", text: "Zirkusweg 1, direkt an den Landungsbrücken in Hamburg." },
 ];
 
+const applicationSteps = [
+  { step: "01", title: "Bewerbung", text: "Kurzbewerbung über das Formular – Zeugnisse später." },
+  { step: "02", title: "Kennenlernen", text: "30 Minuten Video-Gespräch mit Fachbereich und Geschäftsführung." },
+  { step: "03", title: "Fachgespräch", text: "Ein realistisches Fallbeispiel, kein Rätselraten." },
+  { step: "04", title: "Entscheidung", text: "Rückmeldung innerhalb einer Woche, Angebot mit allen Zahlen." },
+];
+
 function Karriere() {
+  const areas = ["Alle", ...Array.from(new Set(jobs.map((job) => job.team)))];
+  const [area, setArea] = useState("Alle");
+  const visible = area === "Alle" ? jobs : jobs.filter((job) => job.team === area);
+
   return (
     <>
       <PageHero
@@ -41,66 +54,105 @@ function Karriere() {
       />
 
       <section className="section">
-        <div className="container-page grid items-center gap-12 md:grid-cols-2">
-          <div className="overflow-hidden rounded-2xl border border-border">
+        <div className="container-page grid gap-4 md:grid-cols-4">
+          <Reveal className="tile overflow-hidden md:col-span-2 md:row-span-2">
             <img
               src={careerImg}
               alt="Neue Kollegin wird vom Team im Büro begrüßt"
               width={1600}
               height={1008}
               loading="lazy"
-              className="h-full w-full object-cover"
+              className="h-full min-h-64 w-full object-cover"
             />
-          </div>
-          <div className="grid gap-6 sm:grid-cols-2">
-            {benefits.map((b) => (
-              <div key={b.title} className="rounded-2xl border border-border bg-card p-6">
-                <div className="flex size-10 items-center justify-center rounded-xl bg-brand-soft text-brand">
-                  <b.icon className="size-5" />
-                </div>
-                <h3 className="mt-4 font-semibold">{b.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{b.text}</p>
+          </Reveal>
+          {benefits.map((benefit, i) => (
+            <Reveal key={benefit.title} delay={i * 70} className="tile p-7">
+              <div className="flex size-10 items-center justify-center rounded-xl bg-brand-soft text-brand">
+                <benefit.icon className="size-5" />
               </div>
+              <h2 className="mt-5 font-display text-base">{benefit.title}</h2>
+              <p className="mt-2 text-sm text-muted-foreground">{benefit.text}</p>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-y border-hairline bg-surface/60 py-20">
+        <div className="container-page">
+          <Reveal>
+            <p className="eyebrow">Bewerbungsprozess</p>
+            <h2 className="mt-4 text-3xl md:text-4xl">Vier Schritte, klare Rückmeldung</h2>
+          </Reveal>
+          <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline md:grid-cols-4">
+            {applicationSteps.map((step, i) => (
+              <Reveal key={step.step} delay={i * 70} className="bg-card p-7">
+                <p className="font-display text-sm text-brand">{step.step}</p>
+                <h3 className="mt-3 font-display text-base">{step.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{step.text}</p>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="border-t border-border bg-secondary/40 py-20">
+      <section className="section">
         <div className="container-page">
-          <h2 className="text-3xl font-bold">Offene Stellen</h2>
-          <p className="mt-3 text-muted-foreground">
+          <Reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="eyebrow">Offene Stellen</p>
+              <h2 className="mt-4 text-3xl md:text-4xl">{jobs.length} Positionen in Hamburg</h2>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {areas.map((item) => (
+                <button
+                  key={item}
+                  type="button"
+                  onClick={() => setArea(item)}
+                  className={`rounded-full border px-4 py-2 text-sm transition-colors ${
+                    area === item
+                      ? "border-brand bg-brand-soft text-brand"
+                      : "border-hairline text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          </Reveal>
+
+          <ul className="mt-10 space-y-4">
+            {visible.map((job, i) => (
+              <Reveal key={job.slug} delay={i * 50} as="li">
+                <Link
+                  to="/karriere/$slug"
+                  params={{ slug: job.slug }}
+                  className="tile group flex flex-col gap-5 p-7 md:flex-row md:items-center md:justify-between md:p-8"
+                >
+                  <div>
+                    <h3 className="font-display text-lg md:text-xl">{job.title}</h3>
+                    <p className="mt-2.5 max-w-2xl text-sm text-muted-foreground">{job.summary}</p>
+                    <div className="mt-4 flex flex-wrap gap-2 text-xs text-muted-foreground">
+                      <span className="rounded-full bg-surface px-3 py-1">{job.team}</span>
+                      <span className="rounded-full bg-surface px-3 py-1">{job.location}</span>
+                      <span className="rounded-full bg-surface px-3 py-1">{job.type}</span>
+                    </div>
+                  </div>
+                  <span className="inline-flex shrink-0 items-center gap-2 text-sm font-medium text-brand">
+                    Stelle ansehen
+                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
+          </ul>
+
+          <p className="mt-10 text-sm text-muted-foreground">
             Keine passende Stelle dabei? Bewerben Sie sich gern initiativ unter{" "}
             <a href="mailto:kontakt@topscale.gmbh" className="text-brand hover:underline">
               kontakt@topscale.gmbh
             </a>
             .
           </p>
-
-          <ul className="mt-10 space-y-4">
-            {jobs.map((job) => (
-              <li key={job.slug}>
-                <Link
-                  to="/karriere/$slug"
-                  params={{ slug: job.slug }}
-                  className="group flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 transition-colors hover:border-brand md:flex-row md:items-center md:justify-between"
-                >
-                  <div>
-                    <h3 className="text-lg font-semibold">{job.title}</h3>
-                    <p className="mt-2 max-w-2xl text-sm text-muted-foreground">{job.summary}</p>
-                    <div className="mt-3 flex flex-wrap gap-2 text-xs text-muted-foreground">
-                      <span className="rounded-full bg-secondary px-3 py-1">{job.team}</span>
-                      <span className="rounded-full bg-secondary px-3 py-1">{job.location}</span>
-                      <span className="rounded-full bg-secondary px-3 py-1">{job.type}</span>
-                    </div>
-                  </div>
-                  <span className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-brand">
-                    Stelle ansehen <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
     </>

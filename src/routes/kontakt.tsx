@@ -1,8 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CheckCircle2, Mail, MapPin } from "lucide-react";
+import { CheckCircle2, Clock, Mail, MapPin } from "lucide-react";
 import { useState, type FormEvent } from "react";
 
+import hamburgImg from "@/assets/hamburg.jpg";
+import { Faq } from "@/components/site/Faq";
 import { PageHero } from "@/components/site/PageHero";
+import { Reveal } from "@/components/site/Reveal";
 
 export const Route = createFileRoute("/kontakt")({
   head: () => ({
@@ -23,6 +26,9 @@ export const Route = createFileRoute("/kontakt")({
   component: Kontakt,
 });
 
+const inputClass =
+  "w-full rounded-lg border border-input bg-background px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20";
+
 function Kontakt() {
   const [sent, setSent] = useState(false);
 
@@ -40,114 +46,168 @@ function Kontakt() {
       />
 
       <section className="section">
-        <div className="container-page grid gap-12 lg:grid-cols-[1fr_1.1fr]">
-          <div className="space-y-6">
-            <div className="rounded-2xl border border-border bg-card p-6">
+        <div className="container-page grid gap-5 lg:grid-cols-[1fr_1.15fr]">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+            <Reveal className="tile p-7">
               <div className="flex size-10 items-center justify-center rounded-xl bg-brand-soft text-brand">
                 <MapPin className="size-5" />
               </div>
-              <h2 className="mt-4 font-semibold">Büro Hamburg</h2>
+              <h2 className="mt-5 font-display text-base">Büro Hamburg</h2>
               <address className="mt-2 text-sm not-italic text-muted-foreground">
                 Topscale GmbH
                 <br />
                 Zirkusweg 1<br />
                 20359 Hamburg
               </address>
-            </div>
-            <div className="rounded-2xl border border-border bg-card p-6">
+            </Reveal>
+            <Reveal delay={70} className="tile p-7">
               <div className="flex size-10 items-center justify-center rounded-xl bg-brand-soft text-brand">
                 <Mail className="size-5" />
               </div>
-              <h2 className="mt-4 font-semibold">E-Mail</h2>
-              <p className="mt-2 text-sm text-muted-foreground">
+              <h2 className="mt-5 font-display text-base">E-Mail</h2>
+              <p className="mt-2 text-sm">
                 <a href="mailto:kontakt@topscale.gmbh" className="text-brand hover:underline">
                   kontakt@topscale.gmbh
                 </a>
               </p>
-              <p className="mt-3 text-sm text-muted-foreground">
-                Erreichbarkeit: montags bis freitags, 9 bis 18 Uhr.
+            </Reveal>
+            <Reveal delay={140} className="tile p-7">
+              <div className="flex size-10 items-center justify-center rounded-xl bg-brand-soft text-brand">
+                <Clock className="size-5" />
+              </div>
+              <h2 className="mt-5 font-display text-base">Erreichbarkeit</h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Montags bis freitags, 9 bis 18 Uhr. Antwort in der Regel innerhalb eines Werktags.
               </p>
-            </div>
+            </Reveal>
+            <Reveal delay={210} className="tile overflow-hidden sm:col-span-2 lg:col-span-1">
+              <img
+                src={hamburgImg}
+                alt="Hamburger Hafen in der Nähe unseres Büros"
+                width={1600}
+                height={912}
+                loading="lazy"
+                className="h-44 w-full object-cover"
+              />
+            </Reveal>
           </div>
 
           {sent ? (
-            <div className="h-fit rounded-2xl border border-brand/40 bg-brand-soft p-8">
-              <CheckCircle2 className="size-8 text-brand" />
-              <h2 className="mt-4 text-xl font-bold">Nachricht erfasst</h2>
+            <Reveal className="tile h-fit p-8 md:p-10">
+              <CheckCircle2 className="size-9 text-brand" />
+              <h2 className="mt-5 font-display text-xl">Nachricht erfasst</h2>
               <p className="mt-3 text-sm text-muted-foreground">
-                Vielen Dank für Ihre Anfrage. Hinweis: Dies ist eine Demo-Ansicht, es werden keine
+                Vielen Dank für Ihre Anfrage. Hinweis: Dies ist eine Demo-Ansicht – es werden keine
                 Daten gespeichert oder versendet.
               </p>
               <button
                 type="button"
                 onClick={() => setSent(false)}
-                className="mt-6 text-sm font-semibold text-brand hover:underline"
+                className="mt-7 text-sm font-medium text-brand hover:underline"
               >
-                Neues Formular öffnen
+                Formular erneut öffnen
               </button>
-            </div>
+            </Reveal>
           ) : (
-            <form
-              onSubmit={handleSubmit}
-              className="h-fit rounded-2xl border border-border bg-card p-6 shadow-sm md:p-8"
-            >
-              <h2 className="text-xl font-bold">Anfrage senden</h2>
-              <div className="mt-6 space-y-4">
-                <div className="grid gap-4 sm:grid-cols-2">
+            <Reveal>
+              <form onSubmit={handleSubmit} className="tile h-fit p-7 md:p-9">
+                <p className="eyebrow">Anfrage</p>
+                <h2 className="mt-3 font-display text-xl">Erzählen Sie uns von Ihrem Projekt</h2>
+                <div className="mt-7 space-y-4">
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <label className="block">
+                      <span className="mb-1.5 block text-sm font-medium">Name</span>
+                      <input required name="name" className={inputClass} autoComplete="name" />
+                    </label>
+                    <label className="block">
+                      <span className="mb-1.5 block text-sm font-medium">Unternehmen</span>
+                      <input name="company" className={inputClass} autoComplete="organization" />
+                    </label>
+                  </div>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <label className="block">
+                      <span className="mb-1.5 block text-sm font-medium">E-Mail</span>
+                      <input required type="email" name="email" className={inputClass} autoComplete="email" />
+                    </label>
+                    <label className="block">
+                      <span className="mb-1.5 block text-sm font-medium">Telefon (optional)</span>
+                      <input name="phone" type="tel" className={inputClass} autoComplete="tel" />
+                    </label>
+                  </div>
                   <label className="block">
-                    <span className="mb-1.5 block text-sm font-medium">Name</span>
-                    <input required name="name" className={inputClass} autoComplete="name" />
+                    <span className="mb-1.5 block text-sm font-medium">Thema</span>
+                    <select name="topic" className={inputClass} defaultValue="IT-Consulting">
+                      <option>IT-Consulting</option>
+                      <option>Softwareentwicklung</option>
+                      <option>Projektmanagement</option>
+                      <option>Prozess- & Qualitätsmanagement</option>
+                      <option>Sonstiges</option>
+                    </select>
                   </label>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <label className="block">
+                      <span className="mb-1.5 block text-sm font-medium">Budgetrahmen</span>
+                      <select name="budget" className={inputClass} defaultValue="noch offen">
+                        <option>noch offen</option>
+                        <option>bis 25.000 €</option>
+                        <option>25.000 – 100.000 €</option>
+                        <option>über 100.000 €</option>
+                      </select>
+                    </label>
+                    <label className="block">
+                      <span className="mb-1.5 block text-sm font-medium">Zeitrahmen</span>
+                      <select name="timing" className={inputClass} defaultValue="in den nächsten Wochen">
+                        <option>so schnell wie möglich</option>
+                        <option>in den nächsten Wochen</option>
+                        <option>im nächsten Quartal</option>
+                        <option>noch in Planung</option>
+                      </select>
+                    </label>
+                  </div>
                   <label className="block">
-                    <span className="mb-1.5 block text-sm font-medium">Unternehmen</span>
-                    <input name="company" className={inputClass} autoComplete="organization" />
+                    <span className="mb-1.5 block text-sm font-medium">Ihre Nachricht</span>
+                    <textarea
+                      required
+                      name="message"
+                      rows={6}
+                      className={inputClass}
+                      placeholder="Worum geht es in Ihrem Projekt?"
+                    />
+                  </label>
+                  <label className="flex items-start gap-3 text-xs text-muted-foreground">
+                    <input type="checkbox" required className="mt-0.5 size-4 accent-[var(--brand)]" />
+                    <span>Ich habe die Datenschutzhinweise gelesen und bin damit einverstanden.</span>
                   </label>
                 </div>
-                <label className="block">
-                  <span className="mb-1.5 block text-sm font-medium">E-Mail</span>
-                  <input required type="email" name="email" className={inputClass} autoComplete="email" />
-                </label>
-                <label className="block">
-                  <span className="mb-1.5 block text-sm font-medium">Thema</span>
-                  <select name="topic" className={inputClass} defaultValue="IT-Consulting">
-                    <option>IT-Consulting</option>
-                    <option>Softwareentwicklung</option>
-                    <option>Projektmanagement</option>
-                    <option>Prozess- & Qualitätsmanagement</option>
-                    <option>Sonstiges</option>
-                  </select>
-                </label>
-                <label className="block">
-                  <span className="mb-1.5 block text-sm font-medium">Ihre Nachricht</span>
-                  <textarea
-                    required
-                    name="message"
-                    rows={6}
-                    className={inputClass}
-                    placeholder="Worum geht es in Ihrem Projekt?"
-                  />
-                </label>
-                <label className="flex items-start gap-3 text-xs text-muted-foreground">
-                  <input type="checkbox" required className="mt-0.5 size-4 accent-[var(--brand)]" />
-                  <span>Ich habe die Datenschutzhinweise gelesen und bin damit einverstanden.</span>
-                </label>
-              </div>
-              <button
-                type="submit"
-                className="mt-6 w-full rounded-full bg-brand px-6 py-3 text-sm font-semibold text-brand-foreground transition-opacity hover:opacity-90"
-              >
-                Nachricht senden
-              </button>
-              <p className="mt-3 text-center text-xs text-muted-foreground">
-                Demo-Formular – es werden keine Daten gespeichert.
-              </p>
-            </form>
+                <button
+                  type="submit"
+                  className="mt-7 w-full rounded-full bg-brand px-6 py-3 text-sm font-semibold text-brand-foreground transition-transform hover:-translate-y-0.5"
+                >
+                  Anfrage senden
+                </button>
+                <p className="mt-3 text-center text-xs text-muted-foreground">
+                  Demo-Formular – es werden keine Daten gespeichert.
+                </p>
+              </form>
+            </Reveal>
           )}
+        </div>
+      </section>
+
+      <section className="border-t border-hairline bg-surface/60 py-20">
+        <div className="container-page grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+          <Reveal>
+            <p className="eyebrow">Häufige Fragen</p>
+            <h2 className="mt-4 text-3xl md:text-4xl">Bevor Sie fragen</h2>
+            <p className="mt-4 text-sm text-muted-foreground">
+              Die Punkte, die in Erstgesprächen am häufigsten aufkommen.
+            </p>
+          </Reveal>
+          <Reveal delay={80}>
+            <Faq />
+          </Reveal>
         </div>
       </section>
     </>
   );
 }
-
-const inputClass =
-  "w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm outline-none focus:border-brand focus:ring-2 focus:ring-brand/25";
