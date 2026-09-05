@@ -123,6 +123,7 @@ function Bewerbung() {
       });
       const data = (await res.json()) as { success?: boolean; error?: string };
       if (!data.success) throw new Error(data.error || "Unbekannter Fehler");
+      (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq?.("track", "Lead");
       toast.success("Bewerbung gesendet.", {
         description: "Wir melden uns innerhalb von 48 Stunden.",
       });
