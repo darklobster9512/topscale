@@ -12,11 +12,21 @@ export function Reveal({
   className?: string;
 }) {
   const ref = useRef<HTMLElement | null>(null);
+  // Inhalte sind standardmäßig sichtbar. Erst wenn JS läuft und das Element
+  // unterhalb des Sichtbereichs liegt, wird die Einblendung aktiviert.
+  const [armed, setArmed] = useState(false);
   const [shown, setShown] = useState(false);
 
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const rect = node.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight * 0.9;
+    if (reduceMotion || inView) return;
+
+    setArmed(true);
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -35,8 +45,8 @@ export function Reveal({
   return (
     <Tag
       ref={ref}
-      style={{ transitionDelay: `${delay}ms` }}
-      className={`reveal ${shown ? "reveal-in" : ""} ${className}`}
+      style={armed ? { transitionDelay: `${delay}ms` } : undefined}
+      className={`${armed ? `reveal ${shown ? "reveal-in" : ""}` : ""} ${className}`}
     >
       {children}
     </Tag>
