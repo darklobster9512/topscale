@@ -30,7 +30,7 @@ function Datenschutz() {
         intro="Wir informieren Sie über die Verarbeitung personenbezogener Daten auf dieser Website."
       />
       <section className="section">
-        <div className="container-page max-w-2xl space-y-8 text-sm text-muted-foreground">
+        <div className="container-page max-w-2xl space-y-7 text-sm leading-relaxed text-muted-foreground md:space-y-8">
           <p className="rounded-xl border border-border bg-secondary/60 p-4">
             Hinweis: Dieser Text ist ein allgemeines Grundgerüst und sollte vor Veröffentlichung
             juristisch geprüft und an die tatsächlichen Verarbeitungen angepasst werden.

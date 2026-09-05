@@ -23,7 +23,7 @@ function Impressum() {
     <>
       <PageHero eyebrow="Rechtliches" title="Impressum" intro="Angaben gemäß § 5 DDG." />
       <section className="section">
-        <div className="container-page max-w-2xl space-y-8 text-sm text-muted-foreground">
+        <div className="container-page max-w-2xl space-y-7 text-sm leading-relaxed text-muted-foreground md:space-y-8">
           <div>
             <h2 className="text-lg font-semibold text-foreground">Anbieter</h2>
             <p className="mt-2">
