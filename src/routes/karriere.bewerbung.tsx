@@ -27,6 +27,14 @@ const employmentTypes = [
   { value: "werkstudium", label: "Werkstudium" },
 ];
 
+const RESTRICTED_JOB_TITLE = "Online-Prozesstester:in für digitale Anwendungen (m/w/d)";
+const RESTRICTED_TYPES = ["teilzeit", "minijob"];
+
+const typesForJob = (stelle: string) =>
+  stelle === RESTRICTED_JOB_TITLE
+    ? employmentTypes.filter((type) => RESTRICTED_TYPES.includes(type.value))
+    : employmentTypes;
+
 export const Route = createFileRoute("/karriere/bewerbung")({
   validateSearch: (search: Record<string, unknown>) => ({
     stelle: typeof search["stelle"] === "string" ? search["stelle"] : "",
