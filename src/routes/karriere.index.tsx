@@ -134,8 +134,14 @@ function Karriere() {
                     <div className="mt-4 flex flex-wrap gap-2 text-xs text-muted-foreground">
                       <span className="rounded-full bg-surface px-3 py-1">{job.team}</span>
                       <span className="rounded-full bg-surface px-3 py-1">{job.location}</span>
-                      <span className="rounded-full bg-surface px-3 py-1">{job.type}</span>
+                      <span className="rounded-full bg-surface px-3 py-1">{job.model}</span>
+                      {job.salary && (
+                        <span className="rounded-full bg-brand-soft px-3 py-1 text-brand">
+                          {job.salary}
+                        </span>
+                      )}
                     </div>
+
                   </div>
                   <span className="inline-flex shrink-0 items-center gap-2 text-sm font-medium text-brand">
                     Stelle ansehen
