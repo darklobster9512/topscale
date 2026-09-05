@@ -152,13 +152,23 @@ function Karriere() {
             ))}
           </ul>
 
-          <p className="mt-10 text-sm text-muted-foreground">
-            Keine passende Stelle dabei? Bewerben Sie sich gern initiativ unter{" "}
-            <a href="mailto:kontakt@topscale.gmbh" className="text-brand hover:underline">
-              kontakt@topscale.gmbh
-            </a>
-            .
-          </p>
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm text-muted-foreground">
+              Keine passende Stelle dabei? Bewerben Sie sich gern initiativ – oder schreiben Sie an{" "}
+              <a href="mailto:kontakt@topscale.gmbh" className="text-brand hover:underline">
+                kontakt@topscale.gmbh
+              </a>
+              .
+            </p>
+            <Link
+              to="/karriere/bewerbung"
+              search={{ stelle: "Initiativbewerbung" }}
+              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-semibold text-brand-foreground transition-transform hover:-translate-y-0.5"
+            >
+              Initiativ bewerben <ArrowRight className="size-4" />
+            </Link>
+          </div>
+
         </div>
       </section>
     </>
