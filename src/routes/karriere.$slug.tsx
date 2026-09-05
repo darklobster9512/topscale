@@ -88,7 +88,7 @@ function JobDetail() {
     <>
       <section className="relative overflow-hidden border-b border-hairline bg-surface/60">
         <div className="grid-texture pointer-events-none absolute inset-0" aria-hidden="true" />
-        <div className="container-page relative py-16 md:py-20">
+        <div className="container-page relative py-10 md:py-20">
           <Breadcrumbs
             items={[
               { label: "Startseite", to: "/" },
@@ -96,9 +96,9 @@ function JobDetail() {
               { label: job.title },
             ]}
           />
-          <p className="eyebrow mt-8">Karriere · {job.team}</p>
-          <h1 className="mt-4 max-w-3xl text-3xl leading-tight md:text-5xl">{job.title}</h1>
-          <div className="mt-6 flex flex-wrap gap-2 text-xs text-muted-foreground">
+          <p className="eyebrow mt-6 md:mt-8">Karriere · {job.team}</p>
+          <h1 className="mt-4 max-w-3xl text-[1.75rem] leading-tight sm:text-3xl md:text-5xl">{job.title}</h1>
+          <div className="mt-5 flex flex-wrap gap-2 md:mt-6 text-xs text-muted-foreground">
             <span className="rounded-full border border-hairline bg-card px-3 py-1">{job.location}</span>
             <span className="rounded-full border border-hairline bg-card px-3 py-1">{job.type}</span>
             {job.status && (
@@ -107,13 +107,13 @@ function JobDetail() {
               </span>
             )}
           </div>
-          <p className="mt-7 max-w-2xl text-lg text-muted-foreground">{job.summary}</p>
+          <p className="mt-5 max-w-2xl text-base text-muted-foreground md:mt-7 md:text-lg">{job.summary}</p>
         </div>
       </section>
 
       <section className="section">
         <div className="container-page grid gap-4 lg:grid-cols-12">
-          <Reveal className="tile space-y-8 p-7 sm:space-y-10 sm:p-9 lg:col-span-8">
+          <Reveal className="tile order-2 space-y-8 p-6 sm:space-y-10 sm:p-9 lg:order-1 lg:col-span-8">
             <div>
               <p className="eyebrow">Über die Position</p>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">{job.description}</p>
@@ -136,8 +136,8 @@ function JobDetail() {
             ))}
           </Reveal>
 
-          <aside className="lg:col-span-4">
-            <div className="tile space-y-5 p-7 lg:sticky lg:top-28">
+          <aside className="order-1 lg:order-2 lg:col-span-4">
+            <div className="tile space-y-5 p-6 md:p-7 lg:sticky lg:top-28">
               <p className="eyebrow">Eckdaten</p>
               <ul className="space-y-4 text-sm">
                 {facts.map((fact) => (
@@ -170,6 +170,16 @@ function JobDetail() {
         </div>
       </section>
 
+      <div className="sticky bottom-0 z-40 border-t border-hairline bg-background/95 px-5 py-3 backdrop-blur-xl lg:hidden">
+        <Link
+          to="/karriere/bewerbung"
+          search={{ stelle: job.title }}
+          className="flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand text-sm font-semibold text-brand-foreground"
+        >
+          Jetzt bewerben <ArrowRight className="size-4" />
+        </Link>
+      </div>
+
       <CtaBand
         title="Noch Fragen zur Rolle?"
         text="Schreiben Sie uns direkt – wir antworten innerhalb von 48 Stunden."
@@ -178,13 +188,13 @@ function JobDetail() {
             <Link
               to="/karriere/bewerbung"
               search={{ stelle: job.title }}
-              className="inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-semibold text-brand-foreground transition-transform hover:-translate-y-0.5"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand px-6 text-sm font-semibold text-brand-foreground transition-transform hover:-translate-y-0.5"
             >
               Jetzt bewerben <ArrowRight className="size-4" />
             </Link>
             <Link
               to="/karriere"
-              className="inline-flex items-center rounded-full border border-white/20 px-6 py-3 text-sm font-semibold transition-colors hover:bg-white/10"
+              className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/20 px-6 text-sm font-semibold transition-colors hover:bg-white/10"
             >
               Andere Stellen
             </Link>
