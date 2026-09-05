@@ -50,6 +50,11 @@ export function Footer() {
                 kontakt@topscale.gmbh
               </a>
             </p>
+            <p>
+              <a href="tel:+4940573078440" className="text-foreground hover:text-brand">
+                040 573078440
+              </a>
+            </p>
           </address>
         </div>
 

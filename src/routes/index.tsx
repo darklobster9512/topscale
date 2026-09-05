@@ -38,6 +38,7 @@ export const Route = createFileRoute("/")({
           name: "Topscale GmbH",
           foundingDate: "2009",
           email: "kontakt@topscale.gmbh",
+          telephone: "+49 40 573078440",
           url: "/",
           logo: "/favicon.png",
           address: {
