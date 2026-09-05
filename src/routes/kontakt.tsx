@@ -68,10 +68,14 @@ function Kontakt() {
               <div className="flex size-10 items-center justify-center rounded-xl bg-brand-soft text-brand">
                 <Mail className="size-5" />
               </div>
-              <h2 className="mt-5 font-display text-base">E-Mail</h2>
+              <h2 className="mt-5 font-display text-base">E-Mail & Telefon</h2>
               <p className="mt-2 text-sm">
                 <a href="mailto:kontakt@topscale.gmbh" className="text-brand hover:underline">
                   kontakt@topscale.gmbh
+                </a>
+                <br />
+                <a href="tel:+4940573078440" className="text-brand hover:underline">
+                  040 573078440
                 </a>
               </p>
             </Reveal>

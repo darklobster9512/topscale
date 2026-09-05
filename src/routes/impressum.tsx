@@ -46,6 +46,11 @@ function Impressum() {
               <a href="mailto:kontakt@topscale.gmbh" className="text-brand hover:underline">
                 kontakt@topscale.gmbh
               </a>
+              <br />
+              Telefon:{" "}
+              <a href="tel:+4940573078440" className="text-brand hover:underline">
+                040 573078440
+              </a>
             </p>
           </div>
           <div>
