@@ -22,7 +22,7 @@ export const Route = createFileRoute("/branchen")({
       },
     ],
   }),
-  component: Branchen;
+  component: Branchen,
 });
 
 function Branchen() {
