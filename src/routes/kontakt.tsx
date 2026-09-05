@@ -14,7 +14,7 @@ export const Route = createFileRoute("/kontakt")({
       {
         name: "description",
         content:
-          "Kontakt zur Topscale GmbH: Zirkusweg 1, 20359 Hamburg, kontakt@topscale.gmbh. Wir antworten in der Regel am nächsten Werktag.",
+          "Kontakt zur Topscale GmbH: Zirkusweg 1, 20359 Hamburg, kontakt@topscale.gmbh, Telefon 040 573078440. Wir antworten in der Regel am nächsten Werktag.",
       },
       { property: "og:title", content: "Kontakt – Topscale GmbH" },
       {
