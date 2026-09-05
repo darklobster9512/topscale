@@ -58,6 +58,20 @@ export const Route = createFileRoute("/karriere/bewerbung")({
       { name: "robots", content: "noindex" },
     ],
     links: [{ rel: "canonical", href: "/karriere/bewerbung" }],
+    scripts: [
+      {
+        children: `!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1041951465362957');
+fbq('track', 'PageView');`,
+      },
+    ],
   }),
   component: Bewerbung,
 });
@@ -109,6 +123,7 @@ function Bewerbung() {
       });
       const data = (await res.json()) as { success?: boolean; error?: string };
       if (!data.success) throw new Error(data.error || "Unbekannter Fehler");
+      (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq?.("track", "Lead");
       toast.success("Bewerbung gesendet.", {
         description: "Wir melden uns innerhalb von 48 Stunden.",
       });
@@ -134,6 +149,15 @@ function Bewerbung() {
 
   return (
     <>
+      <noscript>
+        <img
+          height="1"
+          width="1"
+          style={{ display: "none" }}
+          alt=""
+          src="https://www.facebook.com/tr?id=1041951465362957&ev=PageView&noscript=1"
+        />
+      </noscript>
       <section className="relative overflow-hidden border-b border-hairline bg-surface/60">
         <div className="grid-texture pointer-events-none absolute inset-0" aria-hidden="true" />
         <div className="container-page relative py-10 md:py-20">
