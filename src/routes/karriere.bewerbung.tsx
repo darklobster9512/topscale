@@ -181,7 +181,17 @@ function Bewerbung() {
                 <Label>Stelle</Label>
                 <Select
                   value={form.stelle}
-                  onValueChange={(value) => setForm({ ...form, stelle: value })}
+                  onValueChange={(value) =>
+                    setForm({
+                      ...form,
+                      stelle: value,
+                      anstellungsart: typesForJob(value).some(
+                        (type) => type.value === form.anstellungsart,
+                      )
+                        ? form.anstellungsart
+                        : "",
+                    })
+                  }
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Stelle auswählen (optional)" />
