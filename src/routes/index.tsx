@@ -4,6 +4,7 @@ import { ArrowRight, ArrowUpRight, Cpu, GaugeCircle, ShieldCheck, Workflow } fro
 import officeImg from "@/assets/office.jpg";
 import softwareImg from "@/assets/software.jpg";
 import { CtaBand } from "@/components/site/CtaBand";
+import { HeroVisual } from "@/components/site/HeroVisual";
 import { Reveal } from "@/components/site/Reveal";
 import { Stat } from "@/components/site/Stat";
 import { industries, process } from "@/data/content";
