@@ -30,7 +30,7 @@ const employmentTypes = [
 
 export const Route = createFileRoute("/karriere/bewerbung")({
   validateSearch: (search: Record<string, unknown>) => ({
-    stelle: typeof search.stelle === "string" ? search.stelle : "",
+    stelle: typeof search["stelle"] === "string" ? search["stelle"] : "",
   }),
   head: () => ({
     meta: [
