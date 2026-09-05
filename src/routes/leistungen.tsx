@@ -10,11 +10,11 @@ import { Reveal } from "@/components/site/Reveal";
 export const Route = createFileRoute("/leistungen")({
   head: () => ({
     meta: [
-      { title: "Leistungen – Consulting, Software & Qualität | Topscale GmbH" },
+      { title: "Leistungen: Consulting, Software, Qualität | Topscale" },
       {
         name: "description",
         content:
-          "IT-Consulting, individuelle Softwareentwicklung, Projekt-, Prozess- und Qualitätsmanagement: unsere Leistungen für Mittelstand und Konzerne.",
+          "IT-Consulting, individuelle Softwareentwicklung sowie Projekt-, Prozess- und Qualitätsmanagement – die Leistungen der Topscale GmbH aus Hamburg.",
       },
       { property: "og:title", content: "Leistungen der Topscale GmbH" },
       {
@@ -22,10 +22,14 @@ export const Route = createFileRoute("/leistungen")({
         content:
           "Von der Analyse bis zum Betrieb: Consulting, Softwareentwicklung und Managementberatung aus einer Hand.",
       },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/leistungen" },
     ],
+    links: [{ rel: "canonical", href: "/leistungen" }],
   }),
   component: Leistungen,
 });
+
 
 const blocks = [
   {
