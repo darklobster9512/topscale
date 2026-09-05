@@ -6,7 +6,8 @@ import softwareImg from "@/assets/software.jpg";
 import { CtaBand } from "@/components/site/CtaBand";
 import { Reveal } from "@/components/site/Reveal";
 import { Stat } from "@/components/site/Stat";
-import { industries, process, references } from "@/data/content";
+import { industries, process } from "@/data/content";
+import { team, teamGroups } from "@/data/team";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -78,10 +79,10 @@ function Home() {
                 Erstgespräch vereinbaren <ArrowRight className="size-4" />
               </Link>
               <Link
-                to="/referenzen"
+                to="/leistungen"
                 className="inline-flex items-center gap-2 rounded-full border border-hairline bg-card px-7 py-3.5 text-sm font-semibold transition-colors hover:border-brand/50"
               >
-                Projektbeispiele ansehen
+                Leistungen ansehen
               </Link>
             </div>
           </Reveal>
@@ -185,19 +186,42 @@ function Home() {
         </div>
       </section>
 
-      {/* Reference highlight */}
+      {/* Team highlight */}
       <section className="border-y border-hairline bg-surface/60 py-20">
-        <div className="container-page grid gap-5 lg:grid-cols-3">
-          {references.slice(0, 2).map((ref, i) => (
-            <Reveal key={ref.slug} delay={i * 80} className="tile flex flex-col justify-between p-8">
-              <div>
-                <p className="eyebrow">{ref.client}</p>
-                <h3 className="mt-4 font-display text-xl">{ref.title}</h3>
-                <p className="mt-3 text-sm text-muted-foreground">{ref.result}</p>
-              </div>
-              <p className="mt-8 font-display text-3xl text-brand">{ref.metric}</p>
-            </Reveal>
-          ))}
+        <div className="container-page grid items-stretch gap-5 lg:grid-cols-3">
+          <Reveal className="tile flex h-full flex-col justify-between p-8">
+            <div>
+              <p className="eyebrow">Unser Team</p>
+              <h2 className="mt-4 font-display text-2xl">Feste Ansprechpartner statt wechselnder Besetzung</h2>
+              <p className="mt-4 text-sm text-muted-foreground">
+                Beratung, Entwicklung und Qualitätsmanagement sitzen bei uns in einem Haus – vom
+                Erstgespräch bis zur Übergabe bleiben die Gesichter dieselben.
+              </p>
+            </div>
+            <Link
+              to="/team"
+              className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-brand"
+            >
+              Team ansehen <ArrowRight className="size-4" />
+            </Link>
+          </Reveal>
+
+          <Reveal delay={80} className="tile flex h-full flex-col justify-between p-8">
+            <div>
+              <p className="eyebrow">Aufstellung</p>
+              <p className="mt-4 font-display text-4xl text-brand">{team.length}</p>
+              <p className="mt-2 text-sm text-muted-foreground">Kolleginnen und Kollegen in Hamburg</p>
+            </div>
+            <ul className="mt-8 space-y-2 text-sm text-muted-foreground">
+              {teamGroups.slice(1).map((group) => (
+                <li key={group} className="flex gap-3">
+                  <span className="mt-2 size-1 shrink-0 rounded-full bg-brand" />
+                  {group}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+
           <Reveal delay={160} className="tile overflow-hidden">
             <img
               src={softwareImg}
@@ -208,21 +232,14 @@ function Home() {
               className="h-full min-h-56 w-full object-cover"
             />
           </Reveal>
-          <Reveal delay={220} className="lg:col-span-3">
-            <Link
-              to="/referenzen"
-              className="inline-flex items-center gap-2 text-sm font-medium text-brand"
-            >
-              Alle Projektbeispiele <ArrowRight className="size-4" />
-            </Link>
-          </Reveal>
         </div>
       </section>
 
+
       {/* Vorgehen + office */}
       <section className="section">
-        <div className="container-page grid gap-5 lg:grid-cols-3">
-          <Reveal className="tile overflow-hidden lg:row-span-3">
+        <div className="container-page grid items-stretch gap-5 lg:grid-cols-3">
+          <Reveal className="tile overflow-hidden lg:row-span-2">
             <img
               src={officeImg}
               alt="Helles, modernes Büro mit Arbeitsplätzen"
@@ -232,9 +249,13 @@ function Home() {
               className="h-full min-h-64 w-full object-cover"
             />
           </Reveal>
-          <Reveal delay={60} className="lg:col-span-2">
+          <Reveal delay={60} className="flex flex-col justify-center lg:col-span-2">
             <p className="eyebrow">Vorgehen</p>
             <h2 className="mt-4 text-3xl md:text-4xl">Wie ein Projekt bei uns abläuft</h2>
+            <p className="mt-4 max-w-2xl text-sm text-muted-foreground">
+              Kurze Schritte, sichtbare Ergebnisse: Sie wissen jederzeit, wo das Projekt steht und
+              was als Nächstes ansteht.
+            </p>
           </Reveal>
           {process.slice(0, 2).map((phase, i) => (
             <Reveal key={phase.step} delay={120 + i * 70}>

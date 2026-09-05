@@ -15,7 +15,6 @@ import { Route as DatenschutzRouteImport } from './routes/datenschutz'
 import { Route as ImpressumRouteImport } from './routes/impressum'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as LeistungenRouteImport } from './routes/leistungen'
-import { Route as ReferenzenRouteImport } from './routes/referenzen'
 import { Route as TeamRouteImport } from './routes/team'
 import { Route as UeberUnsRouteImport } from './routes/ueber-uns'
 import { Route as VorgehenRouteImport } from './routes/vorgehen'
@@ -52,11 +51,6 @@ const LeistungenRoute = LeistungenRouteImport.update({
   path: '/leistungen',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ReferenzenRoute = ReferenzenRouteImport.update({
-  id: '/referenzen',
-  path: '/referenzen',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const TeamRoute = TeamRouteImport.update({
   id: '/team',
   path: '/team',
@@ -90,7 +84,6 @@ export interface FileRoutesByFullPath {
   '/impressum': typeof ImpressumRoute
   '/kontakt': typeof KontaktRoute
   '/leistungen': typeof LeistungenRoute
-  '/referenzen': typeof ReferenzenRoute
   '/team': typeof TeamRoute
   '/ueber-uns': typeof UeberUnsRoute
   '/vorgehen': typeof VorgehenRoute
@@ -104,7 +97,6 @@ export interface FileRoutesByTo {
   '/impressum': typeof ImpressumRoute
   '/kontakt': typeof KontaktRoute
   '/leistungen': typeof LeistungenRoute
-  '/referenzen': typeof ReferenzenRoute
   '/team': typeof TeamRoute
   '/ueber-uns': typeof UeberUnsRoute
   '/vorgehen': typeof VorgehenRoute
@@ -119,7 +111,6 @@ export interface FileRoutesById {
   '/impressum': typeof ImpressumRoute
   '/kontakt': typeof KontaktRoute
   '/leistungen': typeof LeistungenRoute
-  '/referenzen': typeof ReferenzenRoute
   '/team': typeof TeamRoute
   '/ueber-uns': typeof UeberUnsRoute
   '/vorgehen': typeof VorgehenRoute
@@ -135,7 +126,6 @@ export interface FileRouteTypes {
     | '/impressum'
     | '/kontakt'
     | '/leistungen'
-    | '/referenzen'
     | '/team'
     | '/ueber-uns'
     | '/vorgehen'
@@ -149,7 +139,6 @@ export interface FileRouteTypes {
     | '/impressum'
     | '/kontakt'
     | '/leistungen'
-    | '/referenzen'
     | '/team'
     | '/ueber-uns'
     | '/vorgehen'
@@ -163,7 +152,6 @@ export interface FileRouteTypes {
     | '/impressum'
     | '/kontakt'
     | '/leistungen'
-    | '/referenzen'
     | '/team'
     | '/ueber-uns'
     | '/vorgehen'
@@ -178,7 +166,6 @@ export interface RootRouteChildren {
   ImpressumRoute: typeof ImpressumRoute
   KontaktRoute: typeof KontaktRoute
   LeistungenRoute: typeof LeistungenRoute
-  ReferenzenRoute: typeof ReferenzenRoute
   TeamRoute: typeof TeamRoute
   UeberUnsRoute: typeof UeberUnsRoute
   VorgehenRoute: typeof VorgehenRoute
@@ -230,13 +217,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LeistungenRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/referenzen': {
-      id: '/referenzen'
-      path: '/referenzen'
-      fullPath: '/referenzen'
-      preLoaderRoute: typeof ReferenzenRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/team': {
       id: '/team'
       path: '/team'
@@ -282,7 +262,6 @@ const rootRouteChildren: RootRouteChildren = {
   ImpressumRoute: ImpressumRoute,
   KontaktRoute: KontaktRoute,
   LeistungenRoute: LeistungenRoute,
-  ReferenzenRoute: ReferenzenRoute,
   TeamRoute: TeamRoute,
   UeberUnsRoute: UeberUnsRoute,
   VorgehenRoute: VorgehenRoute,

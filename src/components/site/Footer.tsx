@@ -19,7 +19,7 @@ const columns = [
       { to: "/team", label: "Unser Team" },
       { to: "/vorgehen", label: "Vorgehen" },
       { to: "/branchen", label: "Branchen" },
-      { to: "/referenzen", label: "Referenzen" },
+      { to: "/karriere", label: "Karriere" },
     ],
   },
   {
