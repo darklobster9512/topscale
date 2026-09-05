@@ -87,7 +87,7 @@ export const team: TeamMember[] = [
     focus: "Testkonzepte, die Fehler früh und wiederholbar finden.",
   },
   {
-    name: "Annika Wolters",
+    name: "Jonas Wolters",
     role: "Recruiting und Personalgewinnung",
     group: "Interne Organisation",
     focus: "Erste Ansprechpartnerin für alle Bewerbungen.",
