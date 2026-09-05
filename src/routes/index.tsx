@@ -238,8 +238,8 @@ function Home() {
 
       {/* Vorgehen + office */}
       <section className="section">
-        <div className="container-page grid gap-5 lg:grid-cols-3">
-          <Reveal className="tile overflow-hidden lg:row-span-3">
+        <div className="container-page grid items-stretch gap-5 lg:grid-cols-3">
+          <Reveal className="tile overflow-hidden lg:row-span-2">
             <img
               src={officeImg}
               alt="Helles, modernes Büro mit Arbeitsplätzen"
@@ -249,9 +249,13 @@ function Home() {
               className="h-full min-h-64 w-full object-cover"
             />
           </Reveal>
-          <Reveal delay={60} className="lg:col-span-2">
+          <Reveal delay={60} className="flex flex-col justify-center lg:col-span-2">
             <p className="eyebrow">Vorgehen</p>
             <h2 className="mt-4 text-3xl md:text-4xl">Wie ein Projekt bei uns abläuft</h2>
+            <p className="mt-4 max-w-2xl text-sm text-muted-foreground">
+              Kurze Schritte, sichtbare Ergebnisse: Sie wissen jederzeit, wo das Projekt steht und
+              was als Nächstes ansteht.
+            </p>
           </Reveal>
           {process.slice(0, 2).map((phase, i) => (
             <Reveal key={phase.step} delay={120 + i * 70}>
