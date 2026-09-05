@@ -87,34 +87,24 @@ function Home() {
             </div>
           </Reveal>
 
-          {/* Bento grid */}
-          <div className="mt-16 grid gap-4 md:grid-cols-3 lg:grid-cols-4">
-            <Reveal className="tile overflow-hidden md:col-span-2 lg:col-span-2 lg:row-span-2">
-              <img
-                src={heroImg}
-                alt="Beratungsteam der Topscale GmbH im Gespräch"
-                width={1600}
-                height={1008}
-                className="h-full min-h-64 w-full object-cover"
-              />
-            </Reveal>
-
-            <Reveal delay={80} className="tile flex flex-col justify-between p-7">
-              <p className="eyebrow">Kennzahlen</p>
+          {/* Kennzahlen */}
+          <div className="mt-16 grid grid-cols-2 gap-4 lg:grid-cols-4">
+            <Reveal delay={80} className="tile flex h-full min-h-40 flex-col justify-between p-6">
+              <p className="eyebrow">Erfahrung</p>
               <Stat value={15} suffix="+" label="Jahre am Markt" />
             </Reveal>
 
-            <Reveal delay={140} className="tile flex flex-col justify-between p-7">
+            <Reveal delay={140} className="tile flex h-full min-h-40 flex-col justify-between p-6">
               <p className="eyebrow">Projekte</p>
               <Stat value={120} suffix="+" label="umgesetzte Vorhaben" />
             </Reveal>
 
-            <Reveal delay={200} className="tile flex flex-col justify-between p-7 md:col-span-2 lg:col-span-1">
+            <Reveal delay={200} className="tile flex h-full min-h-40 flex-col justify-between p-6">
               <p className="eyebrow">Bindung</p>
               <Stat value={94} suffix=" %" label="Anteil Folgeaufträge" />
             </Reveal>
 
-            <Reveal delay={260} className="tile flex flex-col justify-between p-7">
+            <Reveal delay={260} className="tile flex h-full min-h-40 flex-col justify-between p-6">
               <p className="eyebrow">Standort</p>
               <div>
                 <p className="font-display text-2xl">Hamburg</p>
