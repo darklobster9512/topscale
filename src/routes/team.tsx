@@ -10,21 +10,25 @@ import { initialsOf, team, teamGroups } from "@/data/team";
 export const Route = createFileRoute("/team")({
   head: () => ({
     meta: [
-      { title: "Unser Team – Beratung, Entwicklung und Qualität | Topscale GmbH" },
+      { title: "Unser Team – 15 Fachleute | Topscale GmbH" },
       {
         name: "description",
         content:
-          "Die Menschen hinter der Topscale GmbH: Geschäftsführung, Beratung und Projekte, Softwareentwicklung, Qualität und Prozesse sowie interne Organisation.",
+          "Die Menschen hinter der Topscale GmbH: Geschäftsführung, Beratung, Softwareentwicklung, Qualität und Prozesse sowie interne Organisation.",
       },
       { property: "og:title", content: "Unser Team – Topscale GmbH" },
       {
         property: "og:description",
         content: "Feste Ansprechpartner statt wechselnder Besetzung – das Team der Topscale GmbH.",
       },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/team" },
     ],
+    links: [{ rel: "canonical", href: "/team" }],
   }),
   component: Team,
 });
+
 
 const teamFacts = [
   { value: `${team.length}`, label: "Kolleginnen und Kollegen" },
