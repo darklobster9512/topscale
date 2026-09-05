@@ -25,7 +25,7 @@ export function HeroVisual() {
         </div>
 
 
-        <ol className="relative mt-7 space-y-5">
+        <ol className="relative mt-6 space-y-4 md:mt-7 md:space-y-5">
           <span
             className="absolute left-[13px] top-2 bottom-2 w-px bg-hairline"
             aria-hidden="true"
