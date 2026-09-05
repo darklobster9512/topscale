@@ -1,7 +1,8 @@
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
-import { ArrowLeft } from "lucide-react";
+import { ArrowRight, Briefcase, Clock, Euro, MapPin } from "lucide-react";
 
-import { ApplicationForm } from "@/components/site/ApplicationForm";
+import { Breadcrumbs } from "@/components/site/Breadcrumbs";
+import { CtaBand } from "@/components/site/CtaBand";
 import { Reveal } from "@/components/site/Reveal";
 import { getJob } from "@/data/jobs";
 
@@ -27,6 +28,38 @@ export const Route = createFileRoute("/karriere/$slug")({
         { name: "description", content: job.summary },
         { property: "og:title", content: `${job.title} – Topscale GmbH` },
         { property: "og:description", content: job.summary },
+        { property: "og:type", content: "article" },
+        { property: "og:url", content: `/karriere/${job.slug}` },
+        { name: "twitter:card", content: "summary_large_image" },
+      ],
+      links: [{ rel: "canonical", href: `/karriere/${job.slug}` }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "JobPosting",
+            title: job.title,
+            description: `${job.description} Aufgaben: ${job.tasks.join("; ")}. Profil: ${job.profile.join("; ")}.`,
+            employmentType: job.type,
+            hiringOrganization: {
+              "@type": "Organization",
+              name: "Topscale GmbH",
+              sameAs: "https://topscale.gmbh",
+            },
+            jobLocation: {
+              "@type": "Place",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "Zirkusweg 1",
+                postalCode: "20359",
+                addressLocality: "Hamburg",
+                addressCountry: "DE",
+              },
+            },
+            ...(job.salary ? { estimatedSalary: job.salary } : {}),
+          }),
+        },
       ],
     };
   },
@@ -36,55 +69,128 @@ export const Route = createFileRoute("/karriere/$slug")({
 function JobDetail() {
   const { job } = Route.useLoaderData();
 
+  const sections = [
+    { title: "Ihre Aufgaben", items: job.tasks },
+    { title: "Ihr Profil", items: job.profile },
+    { title: "Was wir bieten", items: job.offer },
+  ];
+
+  const facts = [
+    { icon: MapPin, label: "Standort", value: job.location },
+    { icon: Briefcase, label: "Modell", value: job.model },
+    ...(job.workingHours
+      ? [{ icon: Clock, label: "Arbeitszeit", value: job.workingHours }]
+      : []),
+    ...(job.salary ? [{ icon: Euro, label: "Vergütung", value: job.salary }] : []),
+  ];
+
   return (
     <>
       <section className="relative overflow-hidden border-b border-hairline bg-surface/60">
         <div className="grid-texture pointer-events-none absolute inset-0" aria-hidden="true" />
         <div className="container-page relative py-16 md:py-20">
-          <Link
-            to="/karriere"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
-          >
-            <ArrowLeft className="size-4" /> Alle Stellen
-          </Link>
-          <p className="eyebrow mt-8">{job.team}</p>
+          <Breadcrumbs
+            items={[
+              { label: "Startseite", to: "/" },
+              { label: "Karriere", to: "/karriere" },
+              { label: job.title },
+            ]}
+          />
+          <p className="eyebrow mt-8">Karriere · {job.team}</p>
           <h1 className="mt-4 max-w-3xl text-3xl leading-tight md:text-5xl">{job.title}</h1>
           <div className="mt-6 flex flex-wrap gap-2 text-xs text-muted-foreground">
             <span className="rounded-full border border-hairline bg-card px-3 py-1">{job.location}</span>
             <span className="rounded-full border border-hairline bg-card px-3 py-1">{job.type}</span>
+            {job.status && (
+              <span className="rounded-full border border-brand/30 bg-brand-soft px-3 py-1 text-brand">
+                {job.status}
+              </span>
+            )}
           </div>
           <p className="mt-7 max-w-2xl text-lg text-muted-foreground">{job.summary}</p>
         </div>
       </section>
 
       <section className="section">
-        <div className="container-page grid gap-10 lg:grid-cols-[1.05fr_1fr]">
-          <div className="space-y-10">
-            <Block title="Ihre Aufgaben" items={job.tasks} />
-            <Block title="Ihr Profil" items={job.profile} />
-            <Block title="Unser Angebot" items={job.offer} />
-          </div>
-          <Reveal>
-            <ApplicationForm jobTitle={job.title} />
+        <div className="container-page grid gap-4 lg:grid-cols-12">
+          <Reveal className="tile space-y-8 p-7 sm:space-y-10 sm:p-9 lg:col-span-8">
+            <div>
+              <p className="eyebrow">Über die Position</p>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">{job.description}</p>
+            </div>
+            {sections.map((section, i) => (
+              <div key={section.title} className="border-t border-hairline pt-8">
+                <p className="eyebrow">{`0${i + 1}`}</p>
+                <h2 className="mt-3 font-display text-2xl">{section.title}</h2>
+                <ul className="mt-6 space-y-3">
+                  {section.items.map((item, j) => (
+                    <li key={item} className="flex gap-4 text-sm leading-relaxed text-muted-foreground">
+                      <span className="pt-0.5 font-mono text-[11px] text-brand">
+                        — {String(j + 1).padStart(2, "0")}
+                      </span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </Reveal>
+
+          <aside className="lg:col-span-4">
+            <div className="tile space-y-5 p-7 lg:sticky lg:top-28">
+              <p className="eyebrow">Eckdaten</p>
+              <ul className="space-y-4 text-sm">
+                {facts.map((fact) => (
+                  <li key={fact.label} className="flex items-start gap-3">
+                    <fact.icon className="mt-0.5 size-4 text-muted-foreground" />
+                    <span>
+                      <span className="block text-[11px] uppercase tracking-widest text-muted-foreground">
+                        {fact.label}
+                      </span>
+                      <span>{fact.value}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                to="/karriere/bewerbung"
+                search={{ stelle: job.title }}
+                className="mt-2 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-brand px-5 text-sm font-semibold text-brand-foreground transition-transform hover:-translate-y-0.5"
+              >
+                Jetzt bewerben <ArrowRight className="size-4" />
+              </Link>
+              <p className="text-xs text-muted-foreground">
+                Direkter Ansprechpartner:{" "}
+                <a href="mailto:kontakt@topscale.gmbh" className="text-brand hover:underline">
+                  kontakt@topscale.gmbh
+                </a>
+              </p>
+            </div>
+          </aside>
         </div>
       </section>
-    </>
-  );
-}
 
-function Block({ title, items }: { title: string; items: string[] }) {
-  return (
-    <Reveal>
-      <h2 className="font-display text-2xl">{title}</h2>
-      <ul className="mt-5 space-y-3 text-sm">
-        {items.map((item) => (
-          <li key={item} className="flex gap-3">
-            <span className="mt-2 size-1 shrink-0 rounded-full bg-brand" />
-            <span className="text-muted-foreground">{item}</span>
-          </li>
-        ))}
-      </ul>
-    </Reveal>
+      <CtaBand
+        title="Noch Fragen zur Rolle?"
+        text="Schreiben Sie uns direkt – wir antworten innerhalb von 48 Stunden."
+        actions={
+          <>
+            <Link
+              to="/karriere/bewerbung"
+              search={{ stelle: job.title }}
+              className="inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-semibold text-brand-foreground transition-transform hover:-translate-y-0.5"
+            >
+              Jetzt bewerben <ArrowRight className="size-4" />
+            </Link>
+            <Link
+              to="/karriere"
+              className="inline-flex items-center rounded-full border border-white/20 px-6 py-3 text-sm font-semibold transition-colors hover:bg-white/10"
+            >
+              Andere Stellen
+            </Link>
+          </>
+        }
+      />
+    </>
   );
 }

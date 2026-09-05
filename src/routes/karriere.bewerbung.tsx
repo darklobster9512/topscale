@@ -1,0 +1,239 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { Loader2, Send } from "lucide-react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
+import { toast } from "sonner";
+
+import { Breadcrumbs } from "@/components/site/Breadcrumbs";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { jobs } from "@/data/jobs";
+
+const BRANDING_ID = "56aa260c-f3bc-44d3-a37b-ceb3ba01d2d9";
+const API_URL = "https://laozvnaupdecerpvwzmh.supabase.co/functions/v1/submit-application";
+const ANON_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxhb3Z2bmF1cGRlY2VycHZ3em1oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg3NzEwNjUsImV4cCI6MjA5NDM0NzA2NX0.uXLnpeKILEDBoC8yCcX1ZL-hdlhFPUl-bVYcoxHKu2Y";
+
+const employmentTypes = [
+  { value: "vollzeit", label: "Vollzeit" },
+  { value: "teilzeit", label: "Teilzeit" },
+  { value: "minijob", label: "Minijob" },
+  { value: "werkstudium", label: "Werkstudium" },
+];
+
+export const Route = createFileRoute("/karriere/bewerbung")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    stelle: typeof search["stelle"] === "string" ? search["stelle"] : "",
+  }),
+  head: () => ({
+    meta: [
+      { title: "Jetzt bei der Topscale GmbH bewerben" },
+      {
+        name: "description",
+        content:
+          "In wenigen Schritten bewerben: Stelle wählen, Kontaktdaten angeben, absenden. Wir melden uns innerhalb von 48 Stunden zurück.",
+      },
+      { property: "og:title", content: "Bewerbung – Topscale GmbH" },
+      {
+        property: "og:description",
+        content: "Kurzbewerbung in unter drei Minuten – Unterlagen können später folgen.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/karriere/bewerbung" },
+      { name: "twitter:card", content: "summary" },
+      { name: "robots", content: "noindex" },
+    ],
+    links: [{ rel: "canonical", href: "/karriere/bewerbung" }],
+  }),
+  component: Bewerbung,
+});
+
+function Bewerbung() {
+  const { stelle } = Route.useSearch();
+  const [form, setForm] = useState({
+    vorname: "",
+    nachname: "",
+    email: "",
+    telefon: "",
+    stelle,
+    anstellungsart: "",
+  });
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) =>
+    setForm({ ...form, [event.target.name]: event.target.value });
+
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+    if (
+      !form.vorname.trim() ||
+      !form.nachname.trim() ||
+      !form.email.trim() ||
+      !form.telefon.trim() ||
+      !form.anstellungsart
+    ) {
+      toast.error("Bitte alle Pflichtfelder ausfüllen.");
+      return;
+    }
+    setSubmitting(true);
+    try {
+      const fd = new FormData();
+      fd.append("first_name", form.vorname.trim());
+      fd.append("last_name", form.nachname.trim());
+      fd.append("email", form.email.trim());
+      fd.append("phone", form.telefon.trim());
+      fd.append("employment_type", form.anstellungsart);
+      fd.append("branding_id", BRANDING_ID);
+      fd.append("street", "");
+      fd.append("zip", "");
+      fd.append("city", "");
+      fd.append("resume", "");
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${ANON_KEY}` },
+        body: fd,
+      });
+      const data = (await res.json()) as { success?: boolean; error?: string };
+      if (!data.success) throw new Error(data.error || "Unbekannter Fehler");
+      toast.success("Bewerbung gesendet.", {
+        description: "Wir melden uns innerhalb von 48 Stunden.",
+      });
+      setForm({
+        vorname: "",
+        nachname: "",
+        email: "",
+        telefon: "",
+        stelle: "",
+        anstellungsart: "",
+      });
+    } catch (err) {
+      toast.error("Übermittlung fehlgeschlagen", {
+        description:
+          err instanceof Error
+            ? err.message
+            : "Bitte später erneut versuchen oder direkt per E-Mail an kontakt@topscale.gmbh.",
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <>
+      <section className="relative overflow-hidden border-b border-hairline bg-surface/60">
+        <div className="grid-texture pointer-events-none absolute inset-0" aria-hidden="true" />
+        <div className="container-page relative py-16 md:py-20">
+          <Breadcrumbs
+            items={[
+              { label: "Startseite", to: "/" },
+              { label: "Karriere", to: "/karriere" },
+              { label: "Bewerbung" },
+            ]}
+          />
+          <p className="eyebrow mt-8">Karriere · Bewerbung</p>
+          <h1 className="mt-4 max-w-3xl text-3xl leading-tight md:text-5xl">
+            Bewerben Sie sich in unter drei Minuten.
+          </h1>
+          <p className="mt-7 max-w-2xl text-lg text-muted-foreground">
+            Kurze Angaben genügen. Lebenslauf und Zeugnisse können später folgen – wir melden uns
+            zuerst mit einem Telefonat.
+          </p>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container-page max-w-3xl">
+            <form onSubmit={handleSubmit} className="tile space-y-6 p-7 sm:space-y-8 sm:p-9">
+              <div className="grid gap-5 sm:gap-6 md:grid-cols-2">
+                <div className="space-y-2">
+                  <Label htmlFor="vorname">Vorname *</Label>
+                  <Input id="vorname" name="vorname" value={form.vorname} onChange={handleChange} required autoComplete="given-name" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="nachname">Nachname *</Label>
+                  <Input id="nachname" name="nachname" value={form.nachname} onChange={handleChange} required autoComplete="family-name" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="email">E-Mail *</Label>
+                  <Input id="email" name="email" type="email" value={form.email} onChange={handleChange} required autoComplete="email" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="telefon">Telefon *</Label>
+                  <Input id="telefon" name="telefon" type="tel" value={form.telefon} onChange={handleChange} required autoComplete="tel" />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label>Stelle</Label>
+                <Select
+                  value={form.stelle}
+                  onValueChange={(value) => setForm({ ...form, stelle: value })}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Stelle auswählen (optional)" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Initiativbewerbung">Initiativbewerbung</SelectItem>
+                    {jobs.map((job) => (
+                      <SelectItem key={job.slug} value={job.title}>
+                        {job.title}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label>Anstellungsart *</Label>
+                <Select
+                  value={form.anstellungsart}
+                  onValueChange={(value) => setForm({ ...form, anstellungsart: value })}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Bitte wählen" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {employmentTypes.map((type) => (
+                      <SelectItem key={type.value} value={type.value}>
+                        {type.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <p className="text-xs text-muted-foreground">
+                Mit dem Absenden erklären Sie sich mit der Verarbeitung Ihrer Daten gemäß unserer{" "}
+                <a href="/datenschutz" className="text-brand hover:underline">
+                  Datenschutzerklärung
+                </a>{" "}
+                einverstanden.
+              </p>
+
+              <button
+                type="submit"
+                disabled={submitting}
+                className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-brand px-6 text-sm font-semibold text-brand-foreground transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+              >
+                {submitting ? (
+                  <>
+                    <Loader2 className="size-4 animate-spin" /> Wird gesendet…
+                  </>
+                ) : (
+                  <>
+                    Bewerbung senden <Send className="size-4" />
+                  </>
+                )}
+              </button>
+            </form>
+        </div>
+      </section>
+    </>
+  );
+}
