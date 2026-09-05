@@ -99,10 +99,9 @@ function Kontakt() {
           {sent ? (
             <Reveal className="tile h-fit p-6 md:p-10">
               <CheckCircle2 className="size-9 text-brand" />
-              <h2 className="mt-5 font-display text-xl">Nachricht erfasst</h2>
+              <h2 className="mt-5 font-display text-xl">Nachricht gesendet</h2>
               <p className="mt-3 text-sm text-muted-foreground">
-                Vielen Dank für Ihre Anfrage. Hinweis: Dies ist eine Demo-Ansicht – es werden keine
-                Daten gespeichert oder versendet.
+                Vielen Dank für Ihre Anfrage. Wir melden uns in der Regel am nächsten Werktag.
               </p>
               <button
                 type="button"
@@ -190,7 +189,7 @@ function Kontakt() {
                   Anfrage senden
                 </button>
                 <p className="mt-3 text-center text-xs text-muted-foreground">
-                  Demo-Formular – es werden keine Daten gespeichert.
+                  Wir antworten in der Regel innerhalb eines Werktags.
                 </p>
               </form>
             </Reveal>

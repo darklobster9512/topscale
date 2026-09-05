@@ -56,10 +56,9 @@ function Datenschutz() {
           <div>
             <h2 className="text-lg font-semibold text-foreground">Kontakt- und Bewerbungsformulare</h2>
             <p className="mt-2">
-              Die Formulare auf dieser Website dienen derzeit ausschließlich der Demonstration. Es
-              werden keine Eingaben gespeichert oder übermittelt. Sobald ein Versand aktiviert wird,
-              verarbeiten wir Ihre Angaben ausschließlich zur Bearbeitung Ihrer Anfrage bzw.
-              Bewerbung (Art. 6 Abs. 1 lit. b DSGVO, § 26 BDSG).
+              Wenn Sie uns über ein Formular kontaktieren oder sich bewerben, verarbeiten wir Ihre
+              Angaben ausschließlich zur Bearbeitung Ihrer Anfrage bzw. Bewerbung (Art. 6 Abs. 1
+              lit. b DSGVO, § 26 BDSG).
             </p>
           </div>
           <div>
