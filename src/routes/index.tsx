@@ -1,7 +1,6 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Cpu, GaugeCircle, ShieldCheck, Workflow } from "lucide-react";
 
-import heroImg from "@/assets/hero-team.jpg";
 import officeImg from "@/assets/office.jpg";
 import softwareImg from "@/assets/software.jpg";
 import { CtaBand } from "@/components/site/CtaBand";
