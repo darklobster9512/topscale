@@ -31,56 +31,6 @@ export const industries = [
   },
 ];
 
-export const references = [
-  {
-    slug: "handelsgruppe-portal",
-    client: "Handelsgruppe, 1.400 Mitarbeitende",
-    title: "Ein Portal statt fünf Excel-Welten",
-    situation:
-      "Filialdaten wurden in mehreren Tabellen gepflegt, Auswertungen entstanden manuell und waren oft veraltet.",
-    approach:
-      "Prozessaufnahme in allen Bereichen, Datenmodell konsolidiert, danach ein zentrales Portal mit Rollen- und Rechtekonzept entwickelt.",
-    result: "Auswertungen tagesaktuell, manuelle Nacharbeit weitgehend entfallen.",
-    metric: "−70 %",
-    metricLabel: "manueller Aufwand im Reporting",
-  },
-  {
-    slug: "logistik-schnittstellen",
-    client: "Logistikdienstleister, Norddeutschland",
-    title: "Schnittstellen, die nicht mehr nachts anrufen",
-    situation:
-      "Partneranbindungen liefen über gewachsene Skripte ohne Monitoring; Fehler fielen erst beim Kunden auf.",
-    approach:
-      "Neue Integrationsschicht mit klaren Verträgen, automatisierten Tests und Alarmierung, schrittweise Ablösung im Parallelbetrieb.",
-    result: "Störungen werden erkannt, bevor Sendungen betroffen sind.",
-    metric: "99,9 %",
-    metricLabel: "erfolgreiche Übertragungen",
-  },
-  {
-    slug: "industrie-qualitaet",
-    client: "Industriezulieferer, 300 Mitarbeitende",
-    title: "Qualitätsdaten ohne Papier",
-    situation:
-      "Prüfprotokolle wurden auf Papier erfasst und später abgetippt – Auswertungen dauerten Wochen.",
-    approach:
-      "Digitale Prüfmasken für Tablets, Anbindung an das Qualitätsmanagement und Kennzahlen-Dashboards für die Werksleitung.",
-    result: "Abweichungen sind am selben Tag sichtbar, Audits deutlich einfacher.",
-    metric: "3 Tage",
-    metricLabel: "statt 3 Wochen bis zur Auswertung",
-  },
-  {
-    slug: "pmo-aufbau",
-    client: "Versorgungsunternehmen",
-    title: "Projektsteuerung, die Entscheidungen ermöglicht",
-    situation: "Projekte liefen parallel ohne einheitliche Statusbasis, Priorisierung war Bauchgefühl.",
-    approach:
-      "Aufbau eines schlanken PMO mit einheitlichen Statusberichten, Risikoregister und Quartalsplanung.",
-    result: "Die Geschäftsführung entscheidet auf einer Datenbasis statt auf Zurufen.",
-    metric: "18",
-    metricLabel: "Projekte in einem Portfolio gesteuert",
-  },
-];
-
 export const process = [
   {
     step: "01",
