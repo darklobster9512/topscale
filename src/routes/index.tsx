@@ -79,10 +79,10 @@ function Home() {
                 Erstgespräch vereinbaren <ArrowRight className="size-4" />
               </Link>
               <Link
-                to="/referenzen"
+                to="/leistungen"
                 className="inline-flex items-center gap-2 rounded-full border border-hairline bg-card px-7 py-3.5 text-sm font-semibold transition-colors hover:border-brand/50"
               >
-                Projektbeispiele ansehen
+                Leistungen ansehen
               </Link>
             </div>
           </Reveal>
