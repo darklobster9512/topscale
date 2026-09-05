@@ -194,11 +194,11 @@ function Kontakt() {
         </div>
       </section>
 
-      <section className="border-t border-hairline bg-surface/60 py-20">
+      <section className="border-t border-hairline bg-surface/60 py-12 md:py-20">
         <div className="container-page grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
           <Reveal>
             <p className="eyebrow">Häufige Fragen</p>
-            <h2 className="mt-4 text-3xl md:text-4xl">Bevor Sie fragen</h2>
+            <h2 className="mt-4 text-2xl md:text-4xl">Bevor Sie fragen</h2>
             <p className="mt-4 text-sm text-muted-foreground">
               Die Punkte, die in Erstgesprächen am häufigsten aufkommen.
             </p>

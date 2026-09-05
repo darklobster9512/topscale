@@ -70,11 +70,11 @@ function Vorgehen() {
         <div className="container-page">
           <Reveal>
             <p className="eyebrow">Zusammenarbeit</p>
-            <h2 className="mt-4 max-w-2xl text-3xl md:text-4xl">Wie wir zusammenarbeiten</h2>
+            <h2 className="mt-4 max-w-2xl text-2xl md:text-4xl">Wie wir zusammenarbeiten</h2>
           </Reveal>
-          <div className="mt-10 grid gap-5 md:grid-cols-2">
+          <div className="mt-7 grid md:mt-10 gap-5 md:grid-cols-2">
             {collaboration.map((item, i) => (
-              <Reveal key={item.title} delay={80 + i * 70} className="tile flex h-full flex-col p-7">
+              <Reveal key={item.title} delay={80 + i * 70} className="tile flex h-full flex-col p-6 md:p-7">
                 <h3 className="font-display text-lg">{item.title}</h3>
                 <p className="mt-3 text-sm text-muted-foreground">{item.text}</p>
               </Reveal>
@@ -87,11 +87,11 @@ function Vorgehen() {
         <div className="container-page">
           <Reveal>
             <p className="eyebrow">Qualität & Sicherheit</p>
-            <h2 className="mt-4 max-w-2xl text-3xl md:text-4xl">Standards, die nicht verhandelt werden</h2>
+            <h2 className="mt-4 max-w-2xl text-2xl md:text-4xl">Standards, die nicht verhandelt werden</h2>
           </Reveal>
-          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-7 grid md:mt-10 gap-5 md:grid-cols-2 lg:grid-cols-4">
             {quality.map((item, i) => (
-              <Reveal key={item.title} delay={80 + i * 60} className="tile flex h-full flex-col p-7">
+              <Reveal key={item.title} delay={80 + i * 60} className="tile flex h-full flex-col p-6 md:p-7">
                 <h3 className="font-display text-base">{item.title}</h3>
                 <p className="mt-3 text-sm text-muted-foreground">{item.text}</p>
               </Reveal>

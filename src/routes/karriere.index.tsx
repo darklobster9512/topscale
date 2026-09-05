@@ -62,7 +62,7 @@ function Karriere() {
               width={1600}
               height={1050}
               loading="lazy"
-              className="h-full min-h-64 w-full object-cover"
+              className="h-full min-h-48 w-full md:min-h-64 object-cover"
             />
           </Reveal>
           {benefits.map((benefit, i) => (
@@ -77,13 +77,13 @@ function Karriere() {
         </div>
       </section>
 
-      <section className="border-y border-hairline bg-surface/60 py-20">
+      <section className="border-y border-hairline bg-surface/60 py-12 md:py-20">
         <div className="container-page">
           <Reveal>
             <p className="eyebrow">Bewerbungsprozess</p>
-            <h2 className="mt-4 text-3xl md:text-4xl">Vier Schritte, klare Rückmeldung</h2>
+            <h2 className="mt-4 text-2xl md:text-4xl">Vier Schritte, klare Rückmeldung</h2>
           </Reveal>
-          <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline md:grid-cols-4">
+          <div className="mt-8 grid md:mt-12 gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline md:grid-cols-4">
             {applicationSteps.map((step, i) => (
               <Reveal key={step.step} delay={i * 70} className="bg-card p-7">
                 <p className="font-display text-sm text-brand">{step.step}</p>
@@ -100,7 +100,7 @@ function Karriere() {
           <Reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="eyebrow">Offene Stellen</p>
-              <h2 className="mt-4 text-3xl md:text-4xl">{jobs.length} Positionen in Hamburg</h2>
+              <h2 className="mt-4 text-2xl md:text-4xl">{jobs.length} Positionen in Hamburg</h2>
             </div>
             <div className="flex flex-wrap gap-2">
               {areas.map((item) => (

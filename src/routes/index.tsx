@@ -96,7 +96,7 @@ function Home() {
 
 
           {/* Kennzahlen */}
-          <div className="mt-10 grid grid-cols-2 gap-3 md:mt-16 md:gap-4 lg:grid-cols-4">
+          <div className="mt-7 grid md:mt-10 grid-cols-2 gap-3 md:mt-16 md:gap-4 lg:grid-cols-4">
             <Reveal delay={80} className="tile flex h-full min-h-40 flex-col justify-between p-6">
               <p className="eyebrow">Erfahrung</p>
               <Stat value={15} suffix="+" label="Jahre am Markt" />
@@ -130,16 +130,16 @@ function Home() {
         <div className="container-page">
           <Reveal className="max-w-2xl">
             <p className="eyebrow">Leistungen</p>
-            <h2 className="mt-4 text-3xl md:text-5xl">Vier Disziplinen, ein Team</h2>
+            <h2 className="mt-4 text-2xl md:text-5xl">Vier Disziplinen, ein Team</h2>
             <p className="mt-5 text-muted-foreground">
               Weil Strategie, Umsetzung und Qualität bei uns zusammenliegen, entfallen Übergaben,
               die andernorts Wochen kosten.
             </p>
           </Reveal>
 
-          <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid md:mt-12 gap-4 md:grid-cols-2 lg:grid-cols-4">
             {services.map((service, i) => (
-              <Reveal key={service.title} delay={i * 70} className="tile flex flex-col p-7">
+              <Reveal key={service.title} delay={i * 70} className="tile flex flex-col p-6 md:p-7">
                 <div className="flex size-11 items-center justify-center rounded-xl bg-brand-soft text-brand">
                   <service.icon className="size-5" />
                 </div>
@@ -158,7 +158,7 @@ function Home() {
       </section>
 
       {/* Industries strip */}
-      <section className="border-y border-hairline bg-surface/60 py-14">
+      <section className="border-y border-hairline bg-surface/60 py-10 md:py-14">
         <div className="container-page flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <p className="eyebrow shrink-0">Branchen</p>
           <div className="flex flex-wrap gap-2">
@@ -180,9 +180,9 @@ function Home() {
         <div className="container-page">
           <Reveal className="max-w-2xl">
             <p className="eyebrow">Vorgehen</p>
-            <h2 className="mt-4 text-3xl md:text-5xl">Vier Schritte, keine Blackbox</h2>
+            <h2 className="mt-4 text-2xl md:text-5xl">Vier Schritte, keine Blackbox</h2>
           </Reveal>
-          <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid md:mt-12 gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline md:grid-cols-2 lg:grid-cols-4">
             {process.map((step, i) => (
               <Reveal key={step.step} delay={i * 70} className="bg-card p-8">
                 <p className="font-display text-sm text-brand">{step.step}</p>
@@ -195,9 +195,9 @@ function Home() {
       </section>
 
       {/* Team highlight */}
-      <section className="border-y border-hairline bg-surface/60 py-20">
+      <section className="border-y border-hairline bg-surface/60 py-12 md:py-20">
         <div className="container-page grid items-stretch gap-5 lg:grid-cols-3">
-          <Reveal className="tile flex h-full flex-col justify-between p-8">
+          <Reveal className="tile flex h-full flex-col justify-between p-6 md:p-8">
             <div>
               <p className="eyebrow">Unser Team</p>
               <h2 className="mt-4 font-display text-2xl">Feste Ansprechpartner statt wechselnder Besetzung</h2>
@@ -214,7 +214,7 @@ function Home() {
             </Link>
           </Reveal>
 
-          <Reveal delay={80} className="tile flex h-full flex-col justify-between p-8">
+          <Reveal delay={80} className="tile flex h-full flex-col justify-between p-6 md:p-8">
             <div>
               <p className="eyebrow">Aufstellung</p>
               <p className="mt-4 font-display text-4xl text-brand">{team.length}</p>
@@ -237,7 +237,7 @@ function Home() {
               width={1600}
               height={1067}
               loading="lazy"
-              className="h-full min-h-56 w-full object-cover"
+              className="h-full min-h-44 w-full md:min-h-56 object-cover"
             />
           </Reveal>
         </div>
@@ -254,12 +254,12 @@ function Home() {
               width={1600}
               height={1067}
               loading="lazy"
-              className="h-full min-h-64 w-full object-cover"
+              className="h-full min-h-48 w-full md:min-h-64 object-cover"
             />
           </Reveal>
           <Reveal delay={60} className="flex flex-col justify-center lg:col-span-2">
             <p className="eyebrow">Vorgehen</p>
-            <h2 className="mt-4 text-3xl md:text-4xl">Wie ein Projekt bei uns abläuft</h2>
+            <h2 className="mt-4 text-2xl md:text-4xl">Wie ein Projekt bei uns abläuft</h2>
             <p className="mt-4 max-w-2xl text-sm text-muted-foreground">
               Kurze Schritte, sichtbare Ergebnisse: Sie wissen jederzeit, wo das Projekt steht und
               was als Nächstes ansteht.

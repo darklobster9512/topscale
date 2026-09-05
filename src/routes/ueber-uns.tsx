@@ -67,7 +67,7 @@ function UeberUns() {
               width={1600}
               height={1067}
               loading="lazy"
-              className="h-full min-h-64 w-full object-cover"
+              className="h-full min-h-48 w-full md:min-h-64 object-cover"
             />
           </Reveal>
           {values.map((value, i) => (
@@ -84,13 +84,13 @@ function UeberUns() {
         </div>
       </section>
 
-      <section className="border-y border-hairline bg-surface/60 py-20">
+      <section className="border-y border-hairline bg-surface/60 py-12 md:py-20">
         <div className="container-page">
           <Reveal>
             <p className="eyebrow">Unser Weg</p>
-            <h2 className="mt-4 text-3xl md:text-4xl">Gewachsen statt hochskaliert</h2>
+            <h2 className="mt-4 text-2xl md:text-4xl">Gewachsen statt hochskaliert</h2>
           </Reveal>
-          <ol className="mt-12 grid gap-8 md:grid-cols-4">
+          <ol className="mt-8 grid md:mt-12 gap-8 md:grid-cols-4">
             {milestones.map((m, i) => (
               <Reveal key={m.year} delay={i * 70} as="li" className="border-t border-brand/70 pt-5">
                 <p className="font-display text-2xl text-brand">{m.year}</p>
@@ -120,7 +120,7 @@ function UeberUns() {
               width={1600}
               height={1067}
               loading="lazy"
-              className="h-full min-h-56 w-full object-cover"
+              className="h-full min-h-44 w-full md:min-h-56 object-cover"
             />
           </Reveal>
           <Reveal delay={140} className="tile overflow-hidden lg:col-span-2">
@@ -130,7 +130,7 @@ function UeberUns() {
               width={1600}
               height={900}
               loading="lazy"
-              className="h-full min-h-56 w-full object-cover"
+              className="h-full min-h-44 w-full md:min-h-56 object-cover"
             />
           </Reveal>
           <Reveal delay={210} className="tile p-8">
