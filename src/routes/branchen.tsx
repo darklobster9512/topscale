@@ -35,19 +35,23 @@ function Branchen() {
       />
 
       <section className="section">
-        <div className="container-page grid gap-5 lg:grid-cols-3">
-          <Reveal className="tile relative overflow-hidden lg:col-span-2 lg:row-span-2">
+        <div className="container-page grid items-stretch gap-5 lg:grid-cols-3">
+          <Reveal className="tile relative overflow-hidden lg:col-span-3">
             <img
               src={industriesImg}
               alt="Helle Logistikhalle mit Regalen und Kommissionierung"
               width={1600}
               height={1067}
               loading="lazy"
-              className="h-full min-h-72 w-full object-cover"
+              className="h-64 w-full object-cover md:h-80"
             />
           </Reveal>
           {industries.map((industry, i) => (
-            <Reveal key={industry.slug} delay={i * 70} className="tile p-8">
+            <Reveal
+              key={industry.slug}
+              delay={i * 70}
+              className={`tile flex h-full flex-col p-8 ${i === 0 ? "lg:col-span-2" : ""}`}
+            >
               <h2 className="font-display text-xl">{industry.title}</h2>
               <p className="mt-3 text-sm text-muted-foreground">{industry.text}</p>
               <ul className="mt-5 space-y-2 text-sm">
