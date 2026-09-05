@@ -233,7 +233,7 @@ function Home() {
           <Reveal delay={160} className="tile overflow-hidden">
             <img
               src={softwareImg}
-              alt="Zwei Entwickler prüfen gemeinsam Code am Bildschirm"
+              alt="Aufgeräumter Arbeitsplatz mit Laptop, auf dem Quellcode zu sehen ist"
               width={1600}
               height={1067}
               loading="lazy"
