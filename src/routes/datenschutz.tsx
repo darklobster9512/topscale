@@ -9,17 +9,21 @@ export const Route = createFileRoute("/datenschutz")({
       {
         name: "description",
         content:
-          "Datenschutzhinweise der Topscale GmbH: Verantwortlicher, Zwecke der Verarbeitung, Rechte der Betroffenen.",
+          "Datenschutzhinweise der Topscale GmbH: Verantwortlicher, Zwecke der Verarbeitung und Rechte der betroffenen Personen.",
       },
       { property: "og:title", content: "Datenschutz – Topscale GmbH" },
       {
         property: "og:description",
         content: "Informationen zur Verarbeitung personenbezogener Daten auf topscale.gmbh.",
       },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/datenschutz" },
     ],
+    links: [{ rel: "canonical", href: "/datenschutz" }],
   }),
   component: Datenschutz,
 });
+
 
 function Datenschutz() {
   return (
