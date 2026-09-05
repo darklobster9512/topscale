@@ -5,10 +5,8 @@ import { useEffect, useState } from "react";
 import logo from "@/assets/topscale-logo.png.asset.json";
 
 const nav = [
-  { to: "/", label: "Startseite" },
   { to: "/leistungen", label: "Leistungen" },
   { to: "/branchen", label: "Branchen" },
-  { to: "/referenzen", label: "Referenzen" },
   { to: "/vorgehen", label: "Vorgehen" },
   { to: "/ueber-uns", label: "Über uns" },
   { to: "/team", label: "Unser Team" },
