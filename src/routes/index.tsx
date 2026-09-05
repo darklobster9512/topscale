@@ -6,7 +6,8 @@ import softwareImg from "@/assets/software.jpg";
 import { CtaBand } from "@/components/site/CtaBand";
 import { Reveal } from "@/components/site/Reveal";
 import { Stat } from "@/components/site/Stat";
-import { industries, process, references } from "@/data/content";
+import { industries, process } from "@/data/content";
+import { team, teamGroups } from "@/data/team";
 
 export const Route = createFileRoute("/")({
   head: () => ({
