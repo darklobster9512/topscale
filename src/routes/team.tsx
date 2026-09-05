@@ -36,6 +36,18 @@ function Team() {
 
       {teamGroups.map((group, gi) => {
         const members = team.filter((m) => m.group === group);
+        const n = members.length;
+        const gridCols =
+          n === 1
+            ? "grid-cols-1"
+            : n === 2
+              ? "sm:grid-cols-2"
+              : n === 3
+                ? "sm:grid-cols-2 lg:grid-cols-3"
+                : n === 4
+                  ? "sm:grid-cols-2 lg:grid-cols-4"
+                  : "sm:grid-cols-2 lg:grid-cols-6";
+        const spanFor = (i: number) => (n >= 5 ? (i < 3 ? "lg:col-span-2" : "lg:col-span-3") : "");
         return (
           <section
             key={group}
@@ -47,17 +59,25 @@ function Team() {
               <Reveal>
                 <p className="eyebrow">{group}</p>
                 <p className="mt-3 text-sm text-muted-foreground">
-                  {members.length} {members.length === 1 ? "Person" : "Personen"}
+                  {n} {n === 1 ? "Person" : "Personen"}
                 </p>
               </Reveal>
-              <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              <div className={`mt-8 grid items-stretch gap-5 ${gridCols}`}>
                 {members.map((member, i) => (
-                  <Reveal key={member.name} delay={60 + i * 50} className="tile p-7">
+                  <Reveal
+                    key={member.name}
+                    delay={60 + i * 50}
+                    className={`tile flex h-full flex-col p-7 ${spanFor(i)}`}
+                  >
                     <h2 className="font-display text-lg">{member.name}</h2>
                     <p className="mt-2 text-sm text-muted-foreground">{member.role}</p>
                   </Reveal>
                 ))}
               </div>
+            </div>
+          </section>
+        );
+
             </div>
           </section>
         );
