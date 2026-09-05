@@ -1,20 +1,20 @@
-# Meta Pixel nur auf der Bewerbungsseite + Lead-Ereignis
+# Meta Pixel auf der Bewerbungsseite + Lead-Ereignis
 
-Bisher ist gar kein Tracking-Code auf der Seite vorhanden – deshalb wird aktuell nichts an Meta gemeldet. Ihr Pixel (ID 1041951465362957) wird ausschließlich auf der Bewerbungsseite `/karriere/bewerbung` eingebaut.
+Bisher ist gar kein Tracking-Code auf dieser Seite – deshalb wird nichts an Meta gemeldet. Im Referenzprojekt „vendis" liegt der Pixel-Code unverändert im Seitenkopf und beim erfolgreichen Absenden der Bewerbung wird `fbq('track', 'Lead')` ausgelöst. Genau dasselbe Verhalten kommt hier – auf Ihren Wunsch nur auf der Seite `/karriere/bewerbung`.
 
 ## Was passiert
-- Der Pixel lädt nur auf der Bewerbungsseite; alle anderen Seiten bleiben ohne Tracking.
+- Ihr Pixel-Code (ID 1041951465362957) wird 1:1 übernommen, aber nur auf der Bewerbungsseite geladen; alle anderen Seiten bleiben ohne Tracking.
 - Beim Öffnen der Bewerbungsseite wird ein Seitenaufruf ("PageView") gemeldet.
-- Beim **erfolgreichen** Absenden der Bewerbung wird zusätzlich ein "Lead"-Ereignis gemeldet, mit dem gewählten Stellentitel als Zusatzinfo. Bei Fehlern oder unvollständigem Formular wird nichts gemeldet.
-- Der Ersatzbaustein für Besucher ohne JavaScript (das unsichtbare Zählbild) wird auf dieser Seite mit eingesetzt.
+- Beim **erfolgreichen** Absenden der Bewerbung wird "Lead" gemeldet – genau wie im Referenzprojekt, ohne Zusatzdaten. Bei Fehlern oder unvollständigem Formular passiert nichts.
+- Das unsichtbare Zählbild für Besucher ohne JavaScript wird auf dieser Seite mit eingesetzt.
 - Titel, Beschreibungen und Favicon bleiben unverändert.
 
 ## Hinweis zum Datenschutz
-Der Pixel setzt Cookies und überträgt Daten an Meta. Ein passender Absatz in den Datenschutzhinweisen (und je nach Anspruch ein Einwilligungsbanner) wäre sinnvoll. Sagen Sie Bescheid, ob ich das ergänzen soll – im aktuellen Plan ist es nicht enthalten.
+Der Pixel setzt Cookies und überträgt Daten an Meta. Ein passender Absatz in den Datenschutzhinweisen wäre sinnvoll; im Referenzprojekt steht dazu nichts. Sagen Sie Bescheid, ob ich ihn ergänzen soll – im aktuellen Plan ist er nicht enthalten.
 
 ## Technische Details
-- `src/routes/karriere.bewerbung.tsx`: Pixel-Snippet unverändert als `scripts`-Eintrag im vorhandenen `head()` der Route (`children`), damit es nur auf dieser Route ausgeliefert wird. Das `<noscript><img …>` wird im Seiten-JSX gerendert.
-- Neue kleine Hilfsdatei `src/lib/meta-pixel.ts` mit `trackPixel(event, params?)`, die `window.fbq` typsicher und defensiv aufruft (kein Fehler, wenn der Pixel blockiert ist).
-- Im Submit-Handler nach `data.success`: `trackPixel("Lead", { content_name: form.stelle || "Initiativbewerbung" })`, direkt vor dem Erfolgs-Toast.
-- Keine Pakete, kein Backend, keine Änderung an der Übermittlungslogik, `__root.tsx` bleibt unangetastet.
-- Auf der veröffentlichten Adresse wirksam nach dem nächsten Veröffentlichen; Prüfung im Vorschau-Browser über die Netzwerkanfragen an `facebook.net`/`facebook.com/tr`.
+- Anders als im Referenzprojekt gibt es hier keine `index.html`; der Seitenkopf wird pro Route gesetzt. Das Snippet wandert daher unverändert als `scripts`-Eintrag (`children: "..."`) in das bestehende `head()` von `src/routes/karriere.bewerbung.tsx` – so lädt es ausschließlich auf dieser Route.
+- Das `<noscript><img height="1" width="1" …/></noscript>` wird im JSX der Bewerbungsseite gerendert.
+- Im Submit-Handler direkt nach `if (!data.success) throw …`, vor dem Erfolgs-Toast: `(window as unknown as { fbq?: (...a: unknown[]) => void }).fbq?.("track", "Lead")` — identisch zur Referenz, nur typsicher formuliert.
+- Keine Pakete, kein Backend, keine Änderung an der Übermittlung, `__root.tsx` bleibt unangetastet.
+- Nach dem Einbau Prüfung im Browser: Netzwerkanfragen an `connect.facebook.net/en_US/fbevents.js` und `facebook.com/tr?...ev=PageView` bzw. `ev=Lead`.
