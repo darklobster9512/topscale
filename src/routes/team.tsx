@@ -77,10 +77,6 @@ function Team() {
             </div>
           </section>
         );
-
-            </div>
-          </section>
-        );
       })}
 
       <section className="section border-t border-hairline">
