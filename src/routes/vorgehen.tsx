@@ -9,21 +9,25 @@ import { collaboration, process, quality } from "@/data/content";
 export const Route = createFileRoute("/vorgehen")({
   head: () => ({
     meta: [
-      { title: "Vorgehen – so arbeiten wir in Projekten | Topscale GmbH" },
+      { title: "Vorgehen in Projekten | Topscale GmbH" },
       {
         name: "description",
         content:
-          "Unsere Arbeitsweise in vier Phasen: verstehen, entscheiden, umsetzen, verankern – mit festen Ansprechpartnern, transparenten Aufwänden und geprüfter Qualität.",
+          "Unsere Arbeitsweise in vier Phasen: verstehen, entscheiden, umsetzen, verankern – mit festen Ansprechpartnern und transparenten Aufwänden.",
       },
       { property: "og:title", content: "Vorgehen – Topscale GmbH" },
       {
         property: "og:description",
         content: "Vier Phasen, klare Ergebnisse: wie Projekte bei der Topscale GmbH ablaufen.",
       },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/vorgehen" },
     ],
+    links: [{ rel: "canonical", href: "/vorgehen" }],
   }),
   component: Vorgehen,
 });
+
 
 function Vorgehen() {
   return (
