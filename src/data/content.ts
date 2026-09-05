@@ -81,73 +81,71 @@ export const references = [
   },
 ];
 
-export const insights = [
-  {
-    slug: "legacy-ablösen-ohne-stillstand",
-    title: "Legacy ablösen, ohne den Betrieb anzuhalten",
-    excerpt:
-      "Big-Bang-Migrationen scheitern selten an der Technik, sondern am Kalender. Wie ein Parallelbetrieb realistisch geplant wird.",
-    category: "Modernisierung",
-    readingTime: "6 Min.",
-    date: "März 2026",
-    body: [
-      "Der Wunsch ist verständlich: Altsystem aus, Neusystem an, fertig. In der Praxis kollidiert dieser Plan mit Jahresabschlüssen, Saisonspitzen und Urlaubszeiten. Wer die Ablösung als Ereignis plant, plant ein Risiko.",
-      "Wir gehen anders vor: Zuerst wird der Datenfluss zwischen Alt und Neu entkoppelt, meist über eine Integrationsschicht. Danach wandern fachliche Bereiche einzeln – beginnend dort, wo der Nutzen sichtbar und das Risiko klein ist.",
-      "Wichtig ist ein ehrliches Rückfallszenario für jeden Schritt. Wenn ein Bereich zurückgedreht werden kann, sinkt der Druck auf das Team und die Qualität der Entscheidungen steigt.",
-      "Der Preis dieses Vorgehens ist ein längerer Parallelbetrieb. Der Gewinn ist ein Projekt, das keine Nachtschichten und keine Notfallmeldungen an Kunden braucht.",
-    ],
-  },
-  {
-    slug: "prozesse-messbar-machen",
-    title: "Prozesse messbar machen – mit drei Kennzahlen statt dreißig",
-    excerpt:
-      "Kennzahlensysteme ersticken oft an ihrer eigenen Größe. Ein pragmatischer Zuschnitt, der im Alltag überlebt.",
-    category: "Prozessmanagement",
-    readingTime: "5 Min.",
-    date: "Februar 2026",
-    body: [
-      "Viele Organisationen messen alles und steuern nichts. Dashboards füllen sich, Entscheidungen bleiben trotzdem Bauchgefühl, weil niemand weiß, welche Zahl gerade wichtig ist.",
-      "Unsere Empfehlung: pro Prozess drei Kennzahlen – Durchlaufzeit, Fehlerquote, Auslastung. Erst wenn diese drei stabil erhoben werden, lohnt sich Erweiterung.",
-      "Entscheidend ist die Erhebung an der Quelle. Zahlen, die jemand monatlich zusammensucht, sind teuer und veraltet. Zahlen, die im Prozess entstehen, sind billig und aktuell.",
-      "Was folgt, ist unbequem, aber wirksam: Ziele festlegen, Abweichungen besprechen, Maßnahmen dokumentieren. Qualitätsmanagement ist weniger Werkzeug als Gewohnheit.",
-    ],
-  },
-  {
-    slug: "individualsoftware-wann-lohnt-sie",
-    title: "Individualsoftware: wann sie sich lohnt – und wann nicht",
-    excerpt:
-      "Standard ist günstiger, bis er teuer wird. Ein Entscheidungsraster für Make-or-Buy jenseits von Lizenzpreisen.",
-    category: "IT-Strategie",
-    readingTime: "7 Min.",
-    date: "Januar 2026",
-    body: [
-      "Der Vergleich Standard gegen Individual wird meist über Lizenzkosten geführt. Das ist der kleinste Teil der Rechnung. Entscheidend sind Anpassungsaufwand, Prozessbrüche und die Kosten, wenn ein Wettbewerbsvorteil nicht abgebildet werden kann.",
-      "Unser Raster: Was ist Ihr Kerngeschäft, was ist Beiwerk? Beiwerk kauft man ein. Im Kern lohnt sich individuelle Entwicklung, weil dort Differenzierung entsteht.",
-      "Ein zweiter Blick gilt der Halbwertszeit. Prozesse, die sich jährlich ändern, verlangen Software, die man selbst weiterentwickeln kann.",
-      "Und ein dritter: Wer bleibt handlungsfähig, wenn der Anbieter die Preise verdoppelt oder das Produkt einstellt? Diese Frage entscheidet häufiger als jede Feature-Liste.",
-    ],
-  },
-];
-
 export const process = [
   {
     step: "01",
     title: "Verstehen",
     text: "Interviews, Systemsichtung und Datenanalyse. Wir wollen wissen, wie es wirklich läuft – nicht, wie es dokumentiert ist.",
+    outcome: "Prozessbild, Systemlandkarte und eine priorisierte Liste der Schwachstellen.",
+    duration: "1 bis 3 Wochen",
   },
   {
     step: "02",
     title: "Entscheiden",
     text: "Optionen mit Aufwand, Risiko und Nutzen. Sie entscheiden auf einer Grundlage, die auch im Aufsichtsgremium trägt.",
+    outcome: "Zielbild, Umsetzungsschnitt und belastbare Aufwandsschätzung je Schritt.",
+    duration: "1 bis 2 Wochen",
   },
   {
     step: "03",
     title: "Umsetzen",
     text: "Kleine Releases, automatisierte Tests, sichtbare Zwischenergebnisse. Kein Monatsbericht ohne lauffähige Software.",
+    outcome: "Lauffähige Software in kurzen Abständen, jederzeit vorführbarer Stand.",
+    duration: "Zyklen von 2 Wochen",
   },
   {
     step: "04",
     title: "Verankern",
     text: "Schulung, Dokumentation, Übergabe oder Betreuung. Der Erfolg misst sich daran, was nach uns funktioniert.",
+    outcome: "Eingearbeitetes Team, dokumentierter Betrieb, klare Zuständigkeiten.",
+    duration: "Laufend nach Bedarf",
+  },
+];
+
+export const collaboration = [
+  {
+    title: "Feste Ansprechpartner",
+    text: "Sie arbeiten mit denselben Menschen vom Erstgespräch bis zur Übergabe – kein wechselndes Besetzungskarussell.",
+  },
+  {
+    title: "Transparente Aufwände",
+    text: "Aufwände werden vor jedem Zyklus geschätzt und danach abgeglichen. Abweichungen besprechen wir, bevor sie zur Rechnung werden.",
+  },
+  {
+    title: "Dokumentation im Takt",
+    text: "Entscheidungen, Schnittstellen und Betriebsthemen werden fortlaufend festgehalten, nicht am Projektende rekonstruiert.",
+  },
+  {
+    title: "Wissenstransfer",
+    text: "Ihre Fachleute arbeiten mit im Projekt. Am Ende soll Ihr Team weiterentwickeln können – auch ohne uns.",
+  },
+];
+
+export const quality = [
+  {
+    title: "Reviews als Standard",
+    text: "Jede Änderung wird von einer zweiten Person geprüft. Vier-Augen-Prinzip gilt für Code, Konzepte und Datenmodelle.",
+  },
+  {
+    title: "Automatisierte Tests",
+    text: "Fachlich kritische Abläufe sind durch Tests abgesichert und laufen bei jeder Änderung automatisch mit.",
+  },
+  {
+    title: "Nachvollziehbare Releases",
+    text: "Jeder Stand ist versioniert, jede Auslieferung wiederholbar und jederzeit auf einen früheren Stand zurückdrehbar.",
+  },
+  {
+    title: "Datenschutz von Anfang an",
+    text: "Rollen, Rechte, Protokollierung und Löschkonzepte gehören zum Entwurf, nicht zur Nachrüstung.",
   },
 ];
