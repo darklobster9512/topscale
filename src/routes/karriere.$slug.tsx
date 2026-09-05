@@ -2,6 +2,7 @@ import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 
 import { ApplicationForm } from "@/components/site/ApplicationForm";
+import { Reveal } from "@/components/site/Reveal";
 import { getJob } from "@/data/jobs";
 
 export const Route = createFileRoute("/karriere/$slug")({
@@ -12,7 +13,12 @@ export const Route = createFileRoute("/karriere/$slug")({
   },
   head: ({ loaderData }) => {
     if (!loaderData) {
-      return { meta: [{ title: "Stelle nicht gefunden – Topscale GmbH" }, { name: "robots", content: "noindex" }] };
+      return {
+        meta: [
+          { title: "Stelle nicht gefunden – Topscale GmbH" },
+          { name: "robots", content: "noindex" },
+        ],
+      };
     }
     const { job } = loaderData;
     return {
@@ -32,32 +38,35 @@ function JobDetail() {
 
   return (
     <>
-      <section className="border-b border-border bg-gradient-to-b from-accent/60 to-background">
-        <div className="container-page py-14">
+      <section className="relative overflow-hidden border-b border-hairline bg-surface/60">
+        <div className="grid-texture pointer-events-none absolute inset-0" aria-hidden="true" />
+        <div className="container-page relative py-16 md:py-20">
           <Link
             to="/karriere"
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
           >
             <ArrowLeft className="size-4" /> Alle Stellen
           </Link>
-          <h1 className="mt-6 max-w-3xl text-3xl font-bold md:text-5xl">{job.title}</h1>
-          <div className="mt-5 flex flex-wrap gap-2 text-xs text-muted-foreground">
-            <span className="rounded-full bg-card px-3 py-1">{job.team}</span>
-            <span className="rounded-full bg-card px-3 py-1">{job.location}</span>
-            <span className="rounded-full bg-card px-3 py-1">{job.type}</span>
+          <p className="eyebrow mt-8">{job.team}</p>
+          <h1 className="mt-4 max-w-3xl text-3xl leading-tight md:text-5xl">{job.title}</h1>
+          <div className="mt-6 flex flex-wrap gap-2 text-xs text-muted-foreground">
+            <span className="rounded-full border border-hairline bg-card px-3 py-1">{job.location}</span>
+            <span className="rounded-full border border-hairline bg-card px-3 py-1">{job.type}</span>
           </div>
-          <p className="mt-6 max-w-2xl text-lg text-muted-foreground">{job.summary}</p>
+          <p className="mt-7 max-w-2xl text-lg text-muted-foreground">{job.summary}</p>
         </div>
       </section>
 
       <section className="section">
-        <div className="container-page grid gap-12 lg:grid-cols-[1.1fr_1fr]">
+        <div className="container-page grid gap-10 lg:grid-cols-[1.05fr_1fr]">
           <div className="space-y-10">
             <Block title="Ihre Aufgaben" items={job.tasks} />
             <Block title="Ihr Profil" items={job.profile} />
             <Block title="Unser Angebot" items={job.offer} />
           </div>
-          <ApplicationForm jobTitle={job.title} />
+          <Reveal>
+            <ApplicationForm jobTitle={job.title} />
+          </Reveal>
         </div>
       </section>
     </>
@@ -66,16 +75,16 @@ function JobDetail() {
 
 function Block({ title, items }: { title: string; items: string[] }) {
   return (
-    <div>
-      <h2 className="text-2xl font-bold">{title}</h2>
+    <Reveal>
+      <h2 className="font-display text-2xl">{title}</h2>
       <ul className="mt-5 space-y-3 text-sm">
         {items.map((item) => (
           <li key={item} className="flex gap-3">
-            <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" />
+            <span className="mt-2 size-1 shrink-0 rounded-full bg-brand" />
             <span className="text-muted-foreground">{item}</span>
           </li>
         ))}
       </ul>
-    </div>
+    </Reveal>
   );
 }
