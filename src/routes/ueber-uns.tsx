@@ -60,7 +60,7 @@ function UeberUns() {
 
       <section className="section">
         <div className="container-page grid gap-4 md:grid-cols-3">
-          <Reveal className="tile overflow-hidden md:col-span-2 md:row-span-2">
+          <Reveal className="tile overflow-hidden md:col-span-2 md:row-span-2 md:max-h-96">
             <img
               src={teamImg}
               alt="Team in einem Workshop vor einer Wand mit Notizzetteln"
@@ -71,7 +71,7 @@ function UeberUns() {
             />
           </Reveal>
           {values.map((value, i) => (
-            <Reveal key={value.title} delay={i * 70} className="tile p-7">
+            <Reveal key={value.title} delay={i * 70} className="tile flex h-full flex-col justify-center p-7">
               <h2 className="font-display text-lg">{value.title}</h2>
               <p className="mt-3 text-sm text-muted-foreground">{value.text}</p>
             </Reveal>

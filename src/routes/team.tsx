@@ -67,10 +67,10 @@ function Team() {
                   <Reveal
                     key={member.name}
                     delay={60 + i * 50}
-                    className={`tile flex h-full flex-col p-7 ${spanFor(i)}`}
+                    className={`tile flex h-full flex-col p-7 ${n === 1 ? "sm:flex-row sm:items-center sm:justify-between" : ""} ${spanFor(i)}`}
                   >
                     <h2 className="font-display text-lg">{member.name}</h2>
-                    <p className="mt-2 text-sm text-muted-foreground">{member.role}</p>
+                    <p className={`text-sm text-muted-foreground ${n === 1 ? "mt-2 sm:mt-0" : "mt-2"}`}>{member.role}</p>
                   </Reveal>
                 ))}
               </div>
