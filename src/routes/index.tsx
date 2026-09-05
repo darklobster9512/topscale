@@ -212,9 +212,9 @@ function Home() {
           <Reveal delay={160} className="tile overflow-hidden">
             <img
               src={softwareImg}
-              alt="Entwickler bei der gemeinsamen Arbeit an einer Anwendung"
-              width={1408}
-              height={1008}
+              alt="Quellcode auf einem Bildschirm"
+              width={1600}
+              height={1068}
               loading="lazy"
               className="h-full min-h-56 w-full object-cover"
             />
@@ -236,9 +236,9 @@ function Home() {
           <Reveal className="tile overflow-hidden lg:row-span-3">
             <img
               src={officeImg}
-              alt="Helles Besprechungszimmer im Büro der Topscale GmbH"
-              width={1408}
-              height={1008}
+              alt="Helles, modernes Büro mit Arbeitsplätzen"
+              width={1600}
+              height={1067}
               loading="lazy"
               className="h-full min-h-64 w-full object-cover"
             />

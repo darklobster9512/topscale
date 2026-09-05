@@ -63,9 +63,9 @@ function UeberUns() {
           <Reveal className="tile overflow-hidden md:col-span-2 md:row-span-2">
             <img
               src={teamImg}
-              alt="Team der Topscale GmbH bei einer Besprechung"
+              alt="Team in einem Workshop vor einer Wand mit Notizzetteln"
               width={1600}
-              height={1008}
+              height={1067}
               loading="lazy"
               className="h-full min-h-64 w-full object-cover"
             />
@@ -116,9 +116,9 @@ function UeberUns() {
           <Reveal delay={70} className="tile overflow-hidden lg:col-span-2">
             <img
               src={officeImg}
-              alt="Helles Besprechungszimmer am Standort Hamburg"
-              width={1408}
-              height={1008}
+              alt="Helles, modernes Bürogebäude von innen"
+              width={1600}
+              height={1067}
               loading="lazy"
               className="h-full min-h-56 w-full object-cover"
             />
@@ -126,9 +126,9 @@ function UeberUns() {
           <Reveal delay={140} className="tile overflow-hidden lg:col-span-2">
             <img
               src={hamburgImg}
-              alt="Hamburger Hafen mit Elbphilharmonie"
+              alt="Elbphilharmonie und Hamburger Hafen"
               width={1600}
-              height={912}
+              height={900}
               loading="lazy"
               className="h-full min-h-56 w-full object-cover"
             />

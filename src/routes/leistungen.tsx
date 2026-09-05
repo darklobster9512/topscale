@@ -144,8 +144,8 @@ function Leistungen() {
                   <img
                     src={block.image}
                     alt={block.title}
-                    width={1408}
-                    height={1008}
+                    width={1600}
+                    height={1067}
                     loading="lazy"
                     className="h-full w-full object-cover"
                   />

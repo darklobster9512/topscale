@@ -40,9 +40,9 @@ function Insights() {
           <Reveal className="tile overflow-hidden lg:col-span-1 lg:row-span-2">
             <img
               src={insightsImg}
-              alt="Laptop mit Auswertungen auf hellem Schreibtisch"
-              width={1408}
-              height={912}
+              alt="Heller Arbeitsplatz am Fenster mit Laptop und Notizen"
+              width={1600}
+              height={1068}
               loading="lazy"
               className="h-full min-h-64 w-full object-cover"
             />

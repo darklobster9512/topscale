@@ -58,9 +58,9 @@ function Karriere() {
           <Reveal className="tile overflow-hidden md:col-span-2 md:row-span-2">
             <img
               src={careerImg}
-              alt="Neue Kollegin wird vom Team im Büro begrüßt"
+              alt="Team arbeitet gemeinsam an einem Tisch mit Laptops"
               width={1600}
-              height={1008}
+              height={1050}
               loading="lazy"
               className="h-full min-h-64 w-full object-cover"
             />
