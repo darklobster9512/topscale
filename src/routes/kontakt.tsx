@@ -189,7 +189,7 @@ function Kontakt() {
                   Anfrage senden
                 </button>
                 <p className="mt-3 text-center text-xs text-muted-foreground">
-                  Demo-Formular – es werden keine Daten gespeichert.
+                  Wir antworten in der Regel innerhalb eines Werktags.
                 </p>
               </form>
             </Reveal>
