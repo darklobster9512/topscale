@@ -1,13 +1,17 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
+import type { ReactNode } from "react";
 
 export function CtaBand({
   title = "Lassen Sie uns über Ihr Vorhaben sprechen.",
   text = "Ein Erstgespräch dauert 30 Minuten und endet mit einer ehrlichen Einschätzung – nicht mit einem Angebot, das Sie nicht bestellt haben.",
+  actions,
 }: {
   title?: string;
   text?: string;
+  actions?: ReactNode;
 }) {
+
   return (
     <section className="border-t border-hairline bg-ink text-ink-foreground">
       <div className="container-page flex flex-col gap-8 py-20 md:flex-row md:items-end md:justify-between">
