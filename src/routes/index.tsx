@@ -6,7 +6,7 @@ import softwareImg from "@/assets/software.jpg";
 import { CtaBand } from "@/components/site/CtaBand";
 import { Reveal } from "@/components/site/Reveal";
 import { Stat } from "@/components/site/Stat";
-import { industries, insights, process, references } from "@/data/content";
+import { industries, process, references } from "@/data/content";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -219,7 +219,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Insights + office */}
+      {/* Vorgehen + office */}
       <section className="section">
         <div className="container-page grid gap-5 lg:grid-cols-3">
           <Reveal className="tile overflow-hidden lg:row-span-3">
@@ -233,19 +233,17 @@ function Home() {
             />
           </Reveal>
           <Reveal delay={60} className="lg:col-span-2">
-            <p className="eyebrow">Insights</p>
-            <h2 className="mt-4 text-3xl md:text-4xl">Was wir aus Projekten mitnehmen</h2>
+            <p className="eyebrow">Vorgehen</p>
+            <h2 className="mt-4 text-3xl md:text-4xl">Wie ein Projekt bei uns abläuft</h2>
           </Reveal>
-          {insights.slice(0, 2).map((post, i) => (
-            <Reveal key={post.slug} delay={120 + i * 70}>
-              <Link to="/insights/$slug" params={{ slug: post.slug }} className="tile group block h-full p-7">
-                <p className="text-xs text-muted-foreground">
-                  {post.category} · {post.readingTime}
-                </p>
-                <h3 className="mt-4 font-display text-lg">{post.title}</h3>
-                <p className="mt-3 text-sm text-muted-foreground">{post.excerpt}</p>
+          {process.slice(0, 2).map((phase, i) => (
+            <Reveal key={phase.step} delay={120 + i * 70}>
+              <Link to="/vorgehen" className="tile group block h-full p-7">
+                <p className="font-display text-sm text-brand">{phase.step}</p>
+                <h3 className="mt-4 font-display text-lg">{phase.title}</h3>
+                <p className="mt-3 text-sm text-muted-foreground">{phase.outcome}</p>
                 <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-brand">
-                  Lesen
+                  Vorgehen ansehen
                   <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </span>
               </Link>

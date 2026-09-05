@@ -16,9 +16,9 @@ import { Route as ImpressumRouteImport } from './routes/impressum'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as LeistungenRouteImport } from './routes/leistungen'
 import { Route as ReferenzenRouteImport } from './routes/referenzen'
+import { Route as TeamRouteImport } from './routes/team'
 import { Route as UeberUnsRouteImport } from './routes/ueber-uns'
-import { Route as InsightsIndexRouteImport } from './routes/insights.index'
-import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
+import { Route as VorgehenRouteImport } from './routes/vorgehen'
 import { Route as KarriereIndexRouteImport } from './routes/karriere.index'
 import { Route as KarriereSlugRouteImport } from './routes/karriere.$slug'
 
@@ -57,19 +57,19 @@ const ReferenzenRoute = ReferenzenRouteImport.update({
   path: '/referenzen',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TeamRoute = TeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UeberUnsRoute = UeberUnsRouteImport.update({
   id: '/ueber-uns',
   path: '/ueber-uns',
   getParentRoute: () => rootRouteImport,
 } as any)
-const InsightsIndexRoute = InsightsIndexRouteImport.update({
-  id: '/insights/',
-  path: '/insights/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InsightsSlugRoute = InsightsSlugRouteImport.update({
-  id: '/insights/$slug',
-  path: '/insights/$slug',
+const VorgehenRoute = VorgehenRouteImport.update({
+  id: '/vorgehen',
+  path: '/vorgehen',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KarriereIndexRoute = KarriereIndexRouteImport.update({
@@ -91,10 +91,10 @@ export interface FileRoutesByFullPath {
   '/kontakt': typeof KontaktRoute
   '/leistungen': typeof LeistungenRoute
   '/referenzen': typeof ReferenzenRoute
+  '/team': typeof TeamRoute
   '/ueber-uns': typeof UeberUnsRoute
-  '/insights/$slug': typeof InsightsSlugRoute
+  '/vorgehen': typeof VorgehenRoute
   '/karriere/$slug': typeof KarriereSlugRoute
-  '/insights/': typeof InsightsIndexRoute
   '/karriere/': typeof KarriereIndexRoute
 }
 export interface FileRoutesByTo {
@@ -105,10 +105,10 @@ export interface FileRoutesByTo {
   '/kontakt': typeof KontaktRoute
   '/leistungen': typeof LeistungenRoute
   '/referenzen': typeof ReferenzenRoute
+  '/team': typeof TeamRoute
   '/ueber-uns': typeof UeberUnsRoute
-  '/insights/$slug': typeof InsightsSlugRoute
+  '/vorgehen': typeof VorgehenRoute
   '/karriere/$slug': typeof KarriereSlugRoute
-  '/insights': typeof InsightsIndexRoute
   '/karriere': typeof KarriereIndexRoute
 }
 export interface FileRoutesById {
@@ -120,10 +120,10 @@ export interface FileRoutesById {
   '/kontakt': typeof KontaktRoute
   '/leistungen': typeof LeistungenRoute
   '/referenzen': typeof ReferenzenRoute
+  '/team': typeof TeamRoute
   '/ueber-uns': typeof UeberUnsRoute
-  '/insights/$slug': typeof InsightsSlugRoute
+  '/vorgehen': typeof VorgehenRoute
   '/karriere/$slug': typeof KarriereSlugRoute
-  '/insights/': typeof InsightsIndexRoute
   '/karriere/': typeof KarriereIndexRoute
 }
 export interface FileRouteTypes {
@@ -136,10 +136,10 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/leistungen'
     | '/referenzen'
+    | '/team'
     | '/ueber-uns'
-    | '/insights/$slug'
+    | '/vorgehen'
     | '/karriere/$slug'
-    | '/insights/'
     | '/karriere/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -150,10 +150,10 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/leistungen'
     | '/referenzen'
+    | '/team'
     | '/ueber-uns'
-    | '/insights/$slug'
+    | '/vorgehen'
     | '/karriere/$slug'
-    | '/insights'
     | '/karriere'
   id:
     | '__root__'
@@ -164,10 +164,10 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/leistungen'
     | '/referenzen'
+    | '/team'
     | '/ueber-uns'
-    | '/insights/$slug'
+    | '/vorgehen'
     | '/karriere/$slug'
-    | '/insights/'
     | '/karriere/'
   fileRoutesById: FileRoutesById
 }
@@ -179,10 +179,10 @@ export interface RootRouteChildren {
   KontaktRoute: typeof KontaktRoute
   LeistungenRoute: typeof LeistungenRoute
   ReferenzenRoute: typeof ReferenzenRoute
+  TeamRoute: typeof TeamRoute
   UeberUnsRoute: typeof UeberUnsRoute
-  InsightsSlugRoute: typeof InsightsSlugRoute
+  VorgehenRoute: typeof VorgehenRoute
   KarriereSlugRoute: typeof KarriereSlugRoute
-  InsightsIndexRoute: typeof InsightsIndexRoute
   KarriereIndexRoute: typeof KarriereIndexRoute
 }
 
@@ -237,6 +237,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReferenzenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/team': {
+      id: '/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof TeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ueber-uns': {
       id: '/ueber-uns'
       path: '/ueber-uns'
@@ -244,18 +251,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UeberUnsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/insights/': {
-      id: '/insights/'
-      path: '/insights'
-      fullPath: '/insights/'
-      preLoaderRoute: typeof InsightsIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/insights/$slug': {
-      id: '/insights/$slug'
-      path: '/insights/$slug'
-      fullPath: '/insights/$slug'
-      preLoaderRoute: typeof InsightsSlugRouteImport
+    '/vorgehen': {
+      id: '/vorgehen'
+      path: '/vorgehen'
+      fullPath: '/vorgehen'
+      preLoaderRoute: typeof VorgehenRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/karriere/': {
@@ -283,10 +283,10 @@ const rootRouteChildren: RootRouteChildren = {
   KontaktRoute: KontaktRoute,
   LeistungenRoute: LeistungenRoute,
   ReferenzenRoute: ReferenzenRoute,
+  TeamRoute: TeamRoute,
   UeberUnsRoute: UeberUnsRoute,
-  InsightsSlugRoute: InsightsSlugRoute,
+  VorgehenRoute: VorgehenRoute,
   KarriereSlugRoute: KarriereSlugRoute,
-  InsightsIndexRoute: InsightsIndexRoute,
   KarriereIndexRoute: KarriereIndexRoute,
 }
 export const routeTree = rootRouteImport
