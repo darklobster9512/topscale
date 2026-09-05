@@ -217,13 +217,18 @@ function Bewerbung() {
                     <SelectValue placeholder="Bitte wählen" />
                   </SelectTrigger>
                   <SelectContent>
-                    {employmentTypes.map((type) => (
+                    {typesForJob(form.stelle).map((type) => (
                       <SelectItem key={type.value} value={type.value}>
                         {type.label}
                       </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
+                {form.stelle === RESTRICTED_JOB_TITLE ? (
+                  <p className="text-xs text-muted-foreground">
+                    Für diese Stelle sind nur Teilzeit und Minijob möglich.
+                  </p>
+                ) : null}
               </div>
 
               <p className="text-xs text-muted-foreground">
