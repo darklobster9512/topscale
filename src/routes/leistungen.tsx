@@ -98,12 +98,12 @@ function Leistungen() {
           {blocks.map((block, i) => (
             <Reveal key={block.id} delay={i * 60} className="tile overflow-hidden">
               <div className="grid lg:grid-cols-[1.05fr_1fr]">
-                <div className="p-8 md:p-12">
+                <div className="p-6 md:p-12">
                   <p className="eyebrow">0{i + 1}</p>
                   <h2 className="mt-4 font-display text-2xl md:text-4xl">{block.title}</h2>
                   <p className="mt-5 text-muted-foreground">{block.text}</p>
 
-                  <div className="mt-9 grid gap-8 sm:grid-cols-2">
+                  <div className="mt-7 grid gap-6 sm:grid-cols-2 md:mt-9 md:gap-8">
                     <div>
                       <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                         Ergebnisse
@@ -140,7 +140,7 @@ function Leistungen() {
                     ))}
                   </div>
                 </div>
-                <div className="min-h-64 border-t border-hairline lg:border-l lg:border-t-0">
+                <div className="min-h-48 border-t border-hairline md:min-h-64 lg:border-l lg:border-t-0">
                   <img
                     src={block.image}
                     alt={block.title}

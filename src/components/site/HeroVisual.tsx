@@ -12,19 +12,20 @@ const metrics = [
 
 export function HeroVisual() {
   return (
-    <div className="tile relative overflow-hidden p-7 md:p-9">
+    <div className="tile relative overflow-hidden p-5 sm:p-7 md:p-9">
       <div className="grid-texture pointer-events-none absolute inset-0 opacity-70" aria-hidden="true" />
 
       <div className="relative">
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
           <p className="eyebrow">Vom Konzept zum laufenden System</p>
-          <span className="inline-flex items-center gap-2 rounded-full border border-hairline bg-card px-3 py-1 text-[0.6875rem] text-muted-foreground">
+          <span className="inline-flex shrink-0 items-center gap-2 rounded-full border border-hairline bg-card px-3 py-1 text-[0.6875rem] whitespace-nowrap text-muted-foreground">
             <span className="size-1.5 rounded-full bg-brand" />
             laufender Betrieb
           </span>
         </div>
 
-        <ol className="relative mt-7 space-y-5">
+
+        <ol className="relative mt-6 space-y-4 md:mt-7 md:space-y-5">
           <span
             className="absolute left-[13px] top-2 bottom-2 w-px bg-hairline"
             aria-hidden="true"
@@ -48,7 +49,7 @@ export function HeroVisual() {
           ))}
         </ol>
 
-        <div className="mt-8 grid grid-cols-2 gap-3 border-t border-hairline pt-6">
+        <div className="mt-6 grid grid-cols-2 gap-3 border-t border-hairline pt-5 md:mt-8 md:pt-6">
           {metrics.map((metric, i) => (
             <div
               key={metric.label}

@@ -50,7 +50,7 @@ function Branchen() {
             <Reveal
               key={industry.slug}
               delay={i * 70}
-              className={`tile flex h-full flex-col p-8 ${i === 0 ? "lg:col-span-2" : ""}`}
+              className={`tile flex h-full flex-col p-6 md:p-8 ${i === 0 ? "lg:col-span-2" : ""}`}
             >
               <h2 className="font-display text-xl">{industry.title}</h2>
               <p className="mt-3 text-sm text-muted-foreground">{industry.text}</p>

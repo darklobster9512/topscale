@@ -62,7 +62,7 @@ function Karriere() {
               width={1600}
               height={1050}
               loading="lazy"
-              className="h-full min-h-64 w-full object-cover"
+              className="h-full min-h-48 w-full md:min-h-64 object-cover"
             />
           </Reveal>
           {benefits.map((benefit, i) => (
@@ -77,15 +77,15 @@ function Karriere() {
         </div>
       </section>
 
-      <section className="border-y border-hairline bg-surface/60 py-20">
+      <section className="border-y border-hairline bg-surface/60 py-12 md:py-20">
         <div className="container-page">
           <Reveal>
             <p className="eyebrow">Bewerbungsprozess</p>
-            <h2 className="mt-4 text-3xl md:text-4xl">Vier Schritte, klare Rückmeldung</h2>
+            <h2 className="mt-4 text-2xl md:text-4xl">Vier Schritte, klare Rückmeldung</h2>
           </Reveal>
-          <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline md:grid-cols-4">
+          <div className="mt-8 grid md:mt-12 gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline md:grid-cols-4">
             {applicationSteps.map((step, i) => (
-              <Reveal key={step.step} delay={i * 70} className="bg-card p-7">
+              <Reveal key={step.step} delay={i * 70} className="bg-card p-6 md:p-7">
                 <p className="font-display text-sm text-brand">{step.step}</p>
                 <h3 className="mt-3 font-display text-base">{step.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{step.text}</p>
@@ -100,7 +100,7 @@ function Karriere() {
           <Reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="eyebrow">Offene Stellen</p>
-              <h2 className="mt-4 text-3xl md:text-4xl">{jobs.length} Positionen in Hamburg</h2>
+              <h2 className="mt-4 text-2xl md:text-4xl">{jobs.length} Positionen in Hamburg</h2>
             </div>
             <div className="flex flex-wrap gap-2">
               {areas.map((item) => (
@@ -108,7 +108,7 @@ function Karriere() {
                   key={item}
                   type="button"
                   onClick={() => setArea(item)}
-                  className={`rounded-full border px-4 py-2 text-sm transition-colors ${
+                  className={`min-h-10 rounded-full border px-4 text-sm transition-colors ${
                     area === item
                       ? "border-brand bg-brand-soft text-brand"
                       : "border-hairline text-muted-foreground hover:text-foreground"
@@ -120,13 +120,13 @@ function Karriere() {
             </div>
           </Reveal>
 
-          <ul className="mt-10 space-y-4">
+          <ul className="mt-7 space-y-3 md:mt-10 md:space-y-4">
             {visible.map((job, i) => (
               <Reveal key={job.slug} delay={i * 50} as="li">
                 <Link
                   to="/karriere/$slug"
                   params={{ slug: job.slug }}
-                  className="tile group flex flex-col gap-5 p-7 md:flex-row md:items-center md:justify-between md:p-8"
+                  className="tile group flex flex-col gap-4 p-5 md:flex-row md:items-center md:justify-between md:gap-5 md:p-8"
                 >
                   <div>
                     <h3 className="font-display text-lg md:text-xl">{job.title}</h3>
@@ -163,7 +163,7 @@ function Karriere() {
             <Link
               to="/karriere/bewerbung"
               search={{ stelle: "Initiativbewerbung" }}
-              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-semibold text-brand-foreground transition-transform hover:-translate-y-0.5"
+              className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-brand px-6 text-sm font-semibold text-brand-foreground transition-transform hover:-translate-y-0.5"
             >
               Initiativ bewerben <ArrowRight className="size-4" />
             </Link>

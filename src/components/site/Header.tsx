@@ -30,7 +30,7 @@ export function Header() {
         scrolled ? "border-hairline bg-background/90 backdrop-blur-xl" : "border-transparent bg-background"
       }`}
     >
-      <div className="container-page flex h-20 items-center justify-between">
+      <div className="container-page flex h-16 items-center justify-between md:h-20">
         <Link to="/" className="flex items-center" aria-label="Topscale GmbH – Startseite">
           <img src={logo.url} alt="Topscale GmbH" className="h-6 w-auto md:h-7" />
         </Link>
@@ -58,32 +58,39 @@ export function Header() {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex items-center justify-center rounded-full border border-hairline p-2.5 lg:hidden"
+            className="inline-flex size-11 items-center justify-center rounded-full border border-hairline lg:hidden"
             aria-label={open ? "Menü schließen" : "Menü öffnen"}
             aria-expanded={open}
           >
-            {open ? <X className="size-4" /> : <Menu className="size-4" />}
+            {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
         </div>
       </div>
 
       {open && (
         <nav className="border-t border-hairline bg-background lg:hidden">
-          <div className="container-page flex flex-col divide-y divide-hairline py-2">
-            {[{ to: "/", label: "Start" } as const, ...nav, { to: "/kontakt", label: "Kontakt" } as const].map(
-              (item) => (
-                <Link
-                  key={item.to}
-                  to={item.to}
-                  onClick={() => setOpen(false)}
-                  className="py-3.5 text-sm text-muted-foreground"
-                  activeProps={{ className: "text-foreground" }}
-                  activeOptions={{ exact: item.to === "/" }}
-                >
-                  {item.label}
-                </Link>
-              ),
-            )}
+          <div className="container-page flex flex-col divide-y divide-hairline py-1">
+            {[{ to: "/", label: "Start" } as const, ...nav].map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                onClick={() => setOpen(false)}
+                className="flex min-h-12 items-center text-[0.9375rem] text-muted-foreground"
+                activeProps={{ className: "text-foreground" }}
+                activeOptions={{ exact: item.to === "/" }}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+          <div className="container-page pb-4">
+            <Link
+              to="/kontakt"
+              onClick={() => setOpen(false)}
+              className="flex min-h-12 items-center justify-center gap-2 rounded-full bg-ink px-5 text-sm font-semibold text-ink-foreground"
+            >
+              Kontakt <ArrowRight className="size-4" />
+            </Link>
           </div>
         </nav>
       )}

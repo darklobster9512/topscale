@@ -16,13 +16,15 @@ export function PageHero({
   return (
     <section className="relative overflow-hidden border-b border-hairline bg-surface/60">
       <div className="grid-texture pointer-events-none absolute inset-0" aria-hidden="true" />
-      <div className="container-page relative py-20 md:py-28">
-        <Reveal className="grid gap-8 lg:grid-cols-[1.15fr_1fr] lg:items-end lg:gap-12">
+      <div className="container-page relative py-12 md:py-24 lg:py-28">
+        <Reveal className="grid gap-5 md:gap-8 lg:grid-cols-[1.15fr_1fr] lg:items-end lg:gap-12">
           <div>
             <p className="eyebrow">{eyebrow}</p>
-            <h1 className="mt-5 text-4xl leading-[1.05] md:text-5xl lg:text-6xl">{title}</h1>
+            <h1 className="mt-4 text-[2rem] leading-[1.08] sm:text-4xl md:mt-5 md:leading-[1.05] md:text-5xl lg:text-6xl">
+              {title}
+            </h1>
           </div>
-          <p className="text-lg text-muted-foreground lg:pb-2">{intro}</p>
+          <p className="text-base text-muted-foreground md:text-lg lg:pb-2">{intro}</p>
         </Reveal>
         {children}
       </div>

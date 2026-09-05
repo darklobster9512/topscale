@@ -136,7 +136,7 @@ function Bewerbung() {
     <>
       <section className="relative overflow-hidden border-b border-hairline bg-surface/60">
         <div className="grid-texture pointer-events-none absolute inset-0" aria-hidden="true" />
-        <div className="container-page relative py-16 md:py-20">
+        <div className="container-page relative py-10 md:py-20">
           <Breadcrumbs
             items={[
               { label: "Startseite", to: "/" },
@@ -144,11 +144,11 @@ function Bewerbung() {
               { label: "Bewerbung" },
             ]}
           />
-          <p className="eyebrow mt-8">Karriere · Bewerbung</p>
-          <h1 className="mt-4 max-w-3xl text-3xl leading-tight md:text-5xl">
+          <p className="eyebrow mt-6 md:mt-8">Karriere · Bewerbung</p>
+          <h1 className="mt-4 max-w-3xl text-[1.75rem] leading-tight sm:text-3xl md:text-5xl">
             Bewerben Sie sich in unter drei Minuten.
           </h1>
-          <p className="mt-7 max-w-2xl text-lg text-muted-foreground">
+          <p className="mt-5 max-w-2xl text-base text-muted-foreground md:mt-7 md:text-lg">
             Kurze Angaben genügen. Lebenslauf und Zeugnisse können später folgen – wir melden uns
             zuerst mit einem Telefonat.
           </p>
@@ -157,7 +157,7 @@ function Bewerbung() {
 
       <section className="section">
         <div className="container-page max-w-3xl">
-            <form onSubmit={handleSubmit} className="tile space-y-6 p-7 sm:space-y-8 sm:p-9">
+            <form onSubmit={handleSubmit} className="tile space-y-6 p-5 sm:space-y-8 sm:p-9">
               <div className="grid gap-5 sm:gap-6 md:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="vorname">Vorname *</Label>
