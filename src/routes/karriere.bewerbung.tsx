@@ -4,7 +4,6 @@ import { useState, type ChangeEvent, type FormEvent } from "react";
 import { toast } from "sonner";
 
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
-import { Reveal } from "@/components/site/Reveal";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -150,7 +149,6 @@ function Bewerbung() {
 
       <section className="section">
         <div className="container-page max-w-3xl">
-          <Reveal>
             <form onSubmit={handleSubmit} className="tile space-y-6 p-7 sm:space-y-8 sm:p-9">
               <div className="grid gap-5 sm:gap-6 md:grid-cols-2">
                 <div className="space-y-2">
@@ -234,7 +232,6 @@ function Bewerbung() {
                 )}
               </button>
             </form>
-          </Reveal>
         </div>
       </section>
     </>
