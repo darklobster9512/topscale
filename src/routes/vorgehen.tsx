@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import insightsImg from "@/assets/insights.jpg";
+const insightsImg = "/images/insights.jpg";
 import { CtaBand } from "@/components/site/CtaBand";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
