@@ -4,7 +4,8 @@ import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import { CtaBand } from "@/components/site/CtaBand";
-import { team, teamGroups } from "@/data/team";
+import { initialsOf, team, teamGroups } from "@/data/team";
+
 
 export const Route = createFileRoute("/team")({
   head: () => ({
