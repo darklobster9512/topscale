@@ -165,11 +165,19 @@
   width: 100%;
   margin-inline: auto;
   max-width: 78rem;
-  padding-inline: 1.5rem;
+  padding-inline: 1.25rem;
+
+  @media (min-width: 768px) {
+    padding-inline: 1.5rem;
+  }
 }
 
 @utility section {
-  padding-block: 6rem;
+  padding-block: 3.5rem;
+
+  @media (min-width: 768px) {
+    padding-block: 6rem;
+  }
 }
 
 @utility eyebrow {
