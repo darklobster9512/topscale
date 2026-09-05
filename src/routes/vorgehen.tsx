@@ -35,8 +35,8 @@ function Vorgehen() {
       />
 
       <section className="section">
-        <div className="container-page grid gap-5 lg:grid-cols-3">
-          <Reveal className="tile overflow-hidden lg:col-span-3">
+        <div className="container-page grid items-stretch gap-5 md:grid-cols-2">
+          <Reveal className="tile overflow-hidden md:col-span-2">
             <img
               src={insightsImg}
               alt="Projektteam bespricht Zwischenergebnisse an einem Whiteboard"
@@ -47,7 +47,8 @@ function Vorgehen() {
           </Reveal>
 
           {process.map((phase, i) => (
-            <Reveal key={phase.step} delay={80 + i * 70} className="tile p-8">
+            <Reveal key={phase.step} delay={80 + i * 70} className="tile flex h-full flex-col p-8">
+
               <p className="font-display text-sm text-brand">{phase.step}</p>
               <h2 className="mt-4 font-display text-xl">{phase.title}</h2>
               <p className="mt-3 text-sm text-muted-foreground">{phase.text}</p>
