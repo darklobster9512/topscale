@@ -5,7 +5,7 @@ import { PageHero } from "@/components/site/PageHero";
 export const Route = createFileRoute("/impressum")({
   head: () => ({
     meta: [
-      { title: "Impressum – Topscale GmbH" },
+      { title: "Impressum – Topscale GmbH, Hamburg" },
       {
         name: "description",
         content:
@@ -13,10 +13,14 @@ export const Route = createFileRoute("/impressum")({
       },
       { property: "og:title", content: "Impressum – Topscale GmbH" },
       { property: "og:description", content: "Angaben gemäß § 5 DDG der Topscale GmbH, Hamburg." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/impressum" },
     ],
+    links: [{ rel: "canonical", href: "/impressum" }],
   }),
   component: Impressum,
 });
+
 
 function Impressum() {
   return (
