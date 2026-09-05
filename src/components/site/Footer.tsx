@@ -16,9 +16,10 @@ const columns = [
     title: "Unternehmen",
     links: [
       { to: "/ueber-uns", label: "Über uns" },
+      { to: "/team", label: "Unser Team" },
+      { to: "/vorgehen", label: "Vorgehen" },
       { to: "/branchen", label: "Branchen" },
       { to: "/referenzen", label: "Referenzen" },
-      { to: "/insights", label: "Insights" },
     ],
   },
   {
