@@ -16,6 +16,7 @@ import { Route as ImpressumRouteImport } from './routes/impressum'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as LeistungenRouteImport } from './routes/leistungen'
 import { Route as ReferenzenRouteImport } from './routes/referenzen'
+import { Route as TeamRouteImport } from './routes/team'
 import { Route as UeberUnsRouteImport } from './routes/ueber-uns'
 import { Route as VorgehenRouteImport } from './routes/vorgehen'
 import { Route as KarriereIndexRouteImport } from './routes/karriere.index'
@@ -56,6 +57,11 @@ const ReferenzenRoute = ReferenzenRouteImport.update({
   path: '/referenzen',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TeamRoute = TeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UeberUnsRoute = UeberUnsRouteImport.update({
   id: '/ueber-uns',
   path: '/ueber-uns',
@@ -85,6 +91,7 @@ export interface FileRoutesByFullPath {
   '/kontakt': typeof KontaktRoute
   '/leistungen': typeof LeistungenRoute
   '/referenzen': typeof ReferenzenRoute
+  '/team': typeof TeamRoute
   '/ueber-uns': typeof UeberUnsRoute
   '/vorgehen': typeof VorgehenRoute
   '/karriere/$slug': typeof KarriereSlugRoute
@@ -98,6 +105,7 @@ export interface FileRoutesByTo {
   '/kontakt': typeof KontaktRoute
   '/leistungen': typeof LeistungenRoute
   '/referenzen': typeof ReferenzenRoute
+  '/team': typeof TeamRoute
   '/ueber-uns': typeof UeberUnsRoute
   '/vorgehen': typeof VorgehenRoute
   '/karriere/$slug': typeof KarriereSlugRoute
@@ -112,6 +120,7 @@ export interface FileRoutesById {
   '/kontakt': typeof KontaktRoute
   '/leistungen': typeof LeistungenRoute
   '/referenzen': typeof ReferenzenRoute
+  '/team': typeof TeamRoute
   '/ueber-uns': typeof UeberUnsRoute
   '/vorgehen': typeof VorgehenRoute
   '/karriere/$slug': typeof KarriereSlugRoute
@@ -127,6 +136,7 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/leistungen'
     | '/referenzen'
+    | '/team'
     | '/ueber-uns'
     | '/vorgehen'
     | '/karriere/$slug'
@@ -140,6 +150,7 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/leistungen'
     | '/referenzen'
+    | '/team'
     | '/ueber-uns'
     | '/vorgehen'
     | '/karriere/$slug'
@@ -153,6 +164,7 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/leistungen'
     | '/referenzen'
+    | '/team'
     | '/ueber-uns'
     | '/vorgehen'
     | '/karriere/$slug'
@@ -167,6 +179,7 @@ export interface RootRouteChildren {
   KontaktRoute: typeof KontaktRoute
   LeistungenRoute: typeof LeistungenRoute
   ReferenzenRoute: typeof ReferenzenRoute
+  TeamRoute: typeof TeamRoute
   UeberUnsRoute: typeof UeberUnsRoute
   VorgehenRoute: typeof VorgehenRoute
   KarriereSlugRoute: typeof KarriereSlugRoute
@@ -224,6 +237,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReferenzenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/team': {
+      id: '/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof TeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ueber-uns': {
       id: '/ueber-uns'
       path: '/ueber-uns'
@@ -263,6 +283,7 @@ const rootRouteChildren: RootRouteChildren = {
   KontaktRoute: KontaktRoute,
   LeistungenRoute: LeistungenRoute,
   ReferenzenRoute: ReferenzenRoute,
+  TeamRoute: TeamRoute,
   UeberUnsRoute: UeberUnsRoute,
   VorgehenRoute: VorgehenRoute,
   KarriereSlugRoute: KarriereSlugRoute,
