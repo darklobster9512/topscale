@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/select";
 import { jobs } from "@/data/jobs";
 
-const BRANDING_ID = "56aa260c-f3bc-44d3-a37b-ceb3ba01d2d9";
+const BRANDING_ID = "6446b53e-e265-4c1d-ba85-293d92c281ac";
 const API_URL = "https://laozvnaupdecerpvwzmh.supabase.co/functions/v1/submit-application";
 const ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxhb3Z2bmF1cGRlY2VycHZ3em1oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg3NzEwNjUsImV4cCI6MjA5NDM0NzA2NX0.uXLnpeKILEDBoC8yCcX1ZL-hdlhFPUl-bVYcoxHKu2Y";
