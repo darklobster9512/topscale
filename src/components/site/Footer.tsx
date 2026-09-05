@@ -36,7 +36,7 @@ const columns = [
 export function Footer() {
   return (
     <footer className="border-t border-hairline bg-surface/60">
-      <div className="container-page grid gap-12 py-16 lg:grid-cols-[1.4fr_repeat(3,1fr)]">
+      <div className="container-page grid gap-8 divide-y divide-hairline py-10 md:gap-12 md:divide-y-0 md:py-16 lg:grid-cols-[1.4fr_repeat(3,1fr)]">
         <div>
           <img src={logo.url} alt="Topscale GmbH" className="h-6 w-auto" loading="lazy" />
           <p className="mt-5 max-w-xs text-sm text-muted-foreground">
@@ -54,12 +54,15 @@ export function Footer() {
         </div>
 
         {columns.map((column) => (
-          <div key={column.title}>
+          <div key={column.title} className="pt-8 md:pt-0">
             <h3 className="text-sm font-semibold">{column.title}</h3>
-            <ul className="mt-5 space-y-3 text-sm text-muted-foreground">
+            <ul className="mt-3 text-sm text-muted-foreground md:mt-5 md:space-y-3">
               {column.links.map((link) => (
                 <li key={`${column.title}-${link.label}`}>
-                  <Link to={link.to} className="transition-colors hover:text-foreground">
+                  <Link
+                    to={link.to}
+                    className="flex min-h-11 items-center transition-colors hover:text-foreground md:min-h-0"
+                  >
                     {link.label}
                   </Link>
                 </li>
