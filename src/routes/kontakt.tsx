@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CheckCircle2, Clock, Mail, MapPin } from "lucide-react";
 import { useState, type FormEvent } from "react";
 
-import hamburgImg from "@/assets/hamburg.jpg";
+const hamburgImg = "/images/hamburg.jpg";
 import { Faq } from "@/components/site/Faq";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";

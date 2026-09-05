@@ -2,7 +2,7 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Clock, GraduationCap, Heart, MapPin } from "lucide-react";
 import { useState } from "react";
 
-import careerImg from "@/assets/career.jpg";
+const careerImg = "/images/career.jpg";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import { jobs } from "@/data/jobs";

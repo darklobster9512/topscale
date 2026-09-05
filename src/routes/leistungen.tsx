@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import consultingImg from "@/assets/consulting.jpg";
-import teamImg from "@/assets/hero-team.jpg";
-import softwareImg from "@/assets/software.jpg";
+const consultingImg = "/images/consulting.jpg";
+const teamImg = "/images/hero-team.jpg";
+const softwareImg = "/images/software.jpg";
 import { CtaBand } from "@/components/site/CtaBand";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
