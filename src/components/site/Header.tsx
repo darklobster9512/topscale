@@ -2,7 +2,6 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import logo from "@/assets/topscale-logo.png.asset.json";
 
 const nav = [
   { to: "/leistungen", label: "Leistungen" },
@@ -32,7 +31,7 @@ export function Header() {
     >
       <div className="container-page flex h-16 items-center justify-between md:h-20">
         <Link to="/" className="flex items-center" aria-label="Topscale GmbH – Startseite">
-          <img src={logo.url} alt="Topscale GmbH" className="h-6 w-auto md:h-7" />
+          <img src="/topscale-logo.png" alt="Topscale GmbH" className="h-6 w-auto md:h-7" />
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex">

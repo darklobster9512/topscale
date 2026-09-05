@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 
-import logo from "@/assets/topscale-logo.png.asset.json";
 
 const columns = [
   {
@@ -38,7 +37,7 @@ export function Footer() {
     <footer className="border-t border-hairline bg-surface/60">
       <div className="container-page grid gap-8 divide-y divide-hairline py-10 md:gap-12 md:divide-y-0 md:py-16 lg:grid-cols-[1.4fr_repeat(3,1fr)]">
         <div>
-          <img src={logo.url} alt="Topscale GmbH" className="h-6 w-auto" loading="lazy" />
+          <img src="/topscale-logo.png" alt="Topscale GmbH" className="h-6 w-auto" loading="lazy" />
           <p className="mt-5 max-w-xs text-sm text-muted-foreground">
             Consulting, Softwareentwicklung und Beratung in Projekt-, Prozess- und
             Qualitätsmanagement. Aus Hamburg, seit 2009.
