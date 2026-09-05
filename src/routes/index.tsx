@@ -59,33 +59,40 @@ function Home() {
       <section className="relative overflow-hidden border-b border-hairline">
         <div className="grid-texture pointer-events-none absolute inset-0" aria-hidden="true" />
         <div className="container-page relative pb-16 pt-20 md:pb-24 md:pt-28">
-          <Reveal>
-            <p className="inline-flex items-center gap-2 rounded-full border border-hairline bg-card px-4 py-1.5 text-xs text-muted-foreground">
-              <span className="size-1.5 rounded-full bg-brand" />
-              Beratungshaus aus Hamburg · seit 2009
-            </p>
-            <h1 className="mt-8 max-w-4xl text-[2.6rem] leading-[1.02] md:text-7xl">
-              Beratung, die bis zur laufenden Software denkt.
-            </h1>
-            <p className="mt-7 max-w-2xl text-lg text-muted-foreground md:text-xl">
-              Wir verbinden IT-Consulting, Softwareentwicklung und Qualitätsmanagement in einem Team
-              – damit aus Konzepten Systeme werden, die im Betrieb tragen.
-            </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Link
-                to="/kontakt"
-                className="inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 text-sm font-semibold text-brand-foreground transition-transform hover:-translate-y-0.5"
-              >
-                Erstgespräch vereinbaren <ArrowRight className="size-4" />
-              </Link>
-              <Link
-                to="/leistungen"
-                className="inline-flex items-center gap-2 rounded-full border border-hairline bg-card px-7 py-3.5 text-sm font-semibold transition-colors hover:border-brand/50"
-              >
-                Leistungen ansehen
-              </Link>
-            </div>
-          </Reveal>
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            <Reveal>
+              <p className="inline-flex items-center gap-2 rounded-full border border-hairline bg-card px-4 py-1.5 text-xs text-muted-foreground">
+                <span className="size-1.5 rounded-full bg-brand" />
+                Beratungshaus aus Hamburg · seit 2009
+              </p>
+              <h1 className="mt-8 text-[2.6rem] leading-[1.02] md:text-6xl">
+                Beratung, die bis zur laufenden Software denkt.
+              </h1>
+              <p className="mt-7 max-w-xl text-lg text-muted-foreground">
+                Wir verbinden IT-Consulting, Softwareentwicklung und Qualitätsmanagement in einem
+                Team – damit aus Konzepten Systeme werden, die im Betrieb tragen.
+              </p>
+              <div className="mt-9 flex flex-wrap gap-3">
+                <Link
+                  to="/kontakt"
+                  className="inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 text-sm font-semibold text-brand-foreground transition-transform hover:-translate-y-0.5"
+                >
+                  Erstgespräch vereinbaren <ArrowRight className="size-4" />
+                </Link>
+                <Link
+                  to="/leistungen"
+                  className="inline-flex items-center gap-2 rounded-full border border-hairline bg-card px-7 py-3.5 text-sm font-semibold transition-colors hover:border-brand/50"
+                >
+                  Leistungen ansehen
+                </Link>
+              </div>
+            </Reveal>
+
+            <Reveal delay={120}>
+              <HeroVisual />
+            </Reveal>
+          </div>
+
 
           {/* Kennzahlen */}
           <div className="mt-16 grid grid-cols-2 gap-4 lg:grid-cols-4">
