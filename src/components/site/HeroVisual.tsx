@@ -49,7 +49,7 @@ export function HeroVisual() {
           ))}
         </ol>
 
-        <div className="mt-8 grid grid-cols-2 gap-3 border-t border-hairline pt-6">
+        <div className="mt-6 grid grid-cols-2 gap-3 border-t border-hairline pt-5 md:mt-8 md:pt-6">
           {metrics.map((metric, i) => (
             <div
               key={metric.label}
