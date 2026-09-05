@@ -13,22 +13,47 @@ import { team, teamGroups } from "@/data/team";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Topscale GmbH – IT-Consulting & Softwareentwicklung Hamburg" },
+      { title: "IT-Consulting & Softwareentwicklung Hamburg | Topscale" },
       {
         name: "description",
         content:
-          "Topscale GmbH aus Hamburg: IT-Consulting, individuelle Softwareentwicklung und Beratung in Projekt-, Prozess- und Qualitätsmanagement – seit 2009.",
+          "Topscale GmbH aus Hamburg: IT-Consulting, individuelle Softwareentwicklung sowie Projekt-, Prozess- und Qualitätsmanagement – seit 2009.",
       },
-      { property: "og:title", content: "Topscale GmbH – IT-Consulting & Softwareentwicklung" },
+      { property: "og:title", content: "IT-Consulting & Softwareentwicklung Hamburg | Topscale" },
       {
         property: "og:description",
         content:
           "Seit 2009 begleiten wir Unternehmen bei Digitalisierung, Softwareentwicklung und Prozessqualität. Aus Hamburg.",
       },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Topscale GmbH",
+          foundingDate: "2009",
+          email: "kontakt@topscale.gmbh",
+          url: "/",
+          logo: "/favicon.png",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Zirkusweg 1",
+            postalCode: "20359",
+            addressLocality: "Hamburg",
+            addressCountry: "DE",
+          },
+        }),
+      },
     ],
   }),
   component: Home,
 });
+
 
 const services = [
   {
