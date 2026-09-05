@@ -42,12 +42,12 @@ function Vorgehen() {
               alt="Projektteam bespricht Zwischenergebnisse an einem Whiteboard"
               width={1600}
               height={1068}
-              className="h-64 w-full object-cover md:h-80"
+              className="h-44 w-full object-cover sm:h-64 md:h-80"
             />
           </Reveal>
 
           {process.map((phase, i) => (
-            <Reveal key={phase.step} delay={80 + i * 70} className="tile flex h-full flex-col p-8">
+            <Reveal key={phase.step} delay={80 + i * 70} className="tile flex h-full flex-col p-6 md:p-8">
               <p className="font-display text-sm text-brand">{phase.step}</p>
               <h2 className="mt-4 font-display text-xl">{phase.title}</h2>
               <p className="mt-3 flex-1 text-sm text-muted-foreground">{phase.text}</p>

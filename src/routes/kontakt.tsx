@@ -27,7 +27,7 @@ export const Route = createFileRoute("/kontakt")({
 });
 
 const inputClass =
-  "w-full rounded-lg border border-input bg-background px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20";
+  "w-full rounded-lg border border-input bg-background px-3.5 py-3 text-base md:py-2.5 md:text-sm outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20";
 
 function Kontakt() {
   const [sent, setSent] = useState(false);
@@ -48,7 +48,7 @@ function Kontakt() {
       <section className="section">
         <div className="container-page grid gap-5 lg:grid-cols-[1fr_1.15fr]">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-            <Reveal className="tile p-7">
+            <Reveal className="tile p-6 md:p-7">
               <div className="flex size-10 items-center justify-center rounded-xl bg-brand-soft text-brand">
                 <MapPin className="size-5" />
               </div>
@@ -60,7 +60,7 @@ function Kontakt() {
                 20359 Hamburg
               </address>
             </Reveal>
-            <Reveal delay={70} className="tile p-7">
+            <Reveal delay={70} className="tile p-6 md:p-7">
               <div className="flex size-10 items-center justify-center rounded-xl bg-brand-soft text-brand">
                 <Mail className="size-5" />
               </div>
@@ -71,7 +71,7 @@ function Kontakt() {
                 </a>
               </p>
             </Reveal>
-            <Reveal delay={140} className="tile p-7">
+            <Reveal delay={140} className="tile p-6 md:p-7">
               <div className="flex size-10 items-center justify-center rounded-xl bg-brand-soft text-brand">
                 <Clock className="size-5" />
               </div>
@@ -93,7 +93,7 @@ function Kontakt() {
           </div>
 
           {sent ? (
-            <Reveal className="tile h-fit p-8 md:p-10">
+            <Reveal className="tile h-fit p-6 md:p-10">
               <CheckCircle2 className="size-9 text-brand" />
               <h2 className="mt-5 font-display text-xl">Nachricht erfasst</h2>
               <p className="mt-3 text-sm text-muted-foreground">
@@ -110,7 +110,7 @@ function Kontakt() {
             </Reveal>
           ) : (
             <Reveal>
-              <form onSubmit={handleSubmit} className="tile h-fit p-7 md:p-9">
+              <form onSubmit={handleSubmit} className="tile h-fit p-5 md:p-9">
                 <p className="eyebrow">Anfrage</p>
                 <h2 className="mt-3 font-display text-xl">Erzählen Sie uns von Ihrem Projekt</h2>
                 <div className="mt-7 space-y-4">
@@ -181,7 +181,7 @@ function Kontakt() {
                 </div>
                 <button
                   type="submit"
-                  className="mt-7 w-full rounded-full bg-brand px-6 py-3 text-sm font-semibold text-brand-foreground transition-transform hover:-translate-y-0.5"
+                  className="mt-7 min-h-12 w-full rounded-full bg-brand px-6 text-sm font-semibold text-brand-foreground transition-transform hover:-translate-y-0.5"
                 >
                   Anfrage senden
                 </button>
@@ -195,7 +195,7 @@ function Kontakt() {
       </section>
 
       <section className="border-t border-hairline bg-surface/60 py-12 md:py-20">
-        <div className="container-page grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+        <div className="container-page grid gap-8 md:gap-12 lg:grid-cols-[0.8fr_1.2fr]">
           <Reveal>
             <p className="eyebrow">Häufige Fragen</p>
             <h2 className="mt-4 text-2xl md:text-4xl">Bevor Sie fragen</h2>

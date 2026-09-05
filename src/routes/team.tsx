@@ -52,8 +52,8 @@ function Team() {
       <section className="border-b border-hairline bg-surface/60">
         <div className="container-page grid grid-cols-3 divide-x divide-hairline">
           {teamFacts.map((fact) => (
-            <div key={fact.label} className="px-2 py-6 text-center first:pl-0 last:pr-0">
-              <p className="font-display text-2xl md:text-3xl">{fact.value}</p>
+            <div key={fact.label} className="px-1.5 py-5 text-center first:pl-0 last:pr-0 md:px-2 md:py-6">
+              <p className="font-display text-xl md:text-3xl">{fact.value}</p>
               <p className="mt-1 text-xs text-muted-foreground md:text-sm">{fact.label}</p>
             </div>
           ))}
@@ -61,7 +61,7 @@ function Team() {
       </section>
 
       <section className="section">
-        <div className="container-page space-y-14">
+        <div className="container-page space-y-10 md:space-y-14">
           {teamGroups.map((group) => {
             const members = team.filter((m) => m.group === group);
             const n = members.length;
@@ -79,7 +79,7 @@ function Team() {
                     <Reveal
                       key={member.name}
                       delay={40 + i * 45}
-                      className={`tile group flex h-full gap-4 p-6 ${spanFor(n, i)}`}
+                      className={`tile group flex h-full gap-4 p-5 md:p-6 ${spanFor(n, i)}`}
                     >
                       <span
                         aria-hidden="true"
@@ -103,7 +103,7 @@ function Team() {
 
       <section className="section border-t border-hairline bg-surface/60">
         <div className="container-page">
-          <Reveal className="tile p-8 md:p-10">
+          <Reveal className="tile p-6 md:p-10">
             <h2 className="max-w-2xl text-2xl md:text-3xl">Wir wachsen weiter – ruhig und bewusst</h2>
             <p className="mt-4 max-w-2xl text-sm text-muted-foreground">
               Neue Kolleginnen und Kollegen werden bei uns strukturiert eingearbeitet: fester Pate, klarer Plan für die
