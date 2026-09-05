@@ -11,7 +11,7 @@ import { Stat } from "@/components/site/Stat";
 export const Route = createFileRoute("/ueber-uns")({
   head: () => ({
     meta: [
-      { title: "Über uns – Topscale GmbH aus Hamburg" },
+      { title: "Über uns – Beratungshaus aus Hamburg | Topscale" },
       {
         name: "description",
         content:
@@ -22,10 +22,14 @@ export const Route = createFileRoute("/ueber-uns")({
         property: "og:description",
         content: "Seit 2009 am Hamburger Standort: Werte, Arbeitsweise und Team der Topscale GmbH.",
       },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/ueber-uns" },
     ],
+    links: [{ rel: "canonical", href: "/ueber-uns" }],
   }),
   component: UeberUns,
 });
+
 
 const values = [
   {

@@ -10,7 +10,7 @@ import { Reveal } from "@/components/site/Reveal";
 export const Route = createFileRoute("/kontakt")({
   head: () => ({
     meta: [
-      { title: "Kontakt – Topscale GmbH Hamburg" },
+      { title: "Kontakt – Topscale GmbH, Hamburg" },
       {
         name: "description",
         content:
@@ -21,10 +21,14 @@ export const Route = createFileRoute("/kontakt")({
         property: "og:description",
         content: "Sprechen wir über Ihr Projekt: Topscale GmbH, Zirkusweg 1, 20359 Hamburg.",
       },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/kontakt" },
     ],
+    links: [{ rel: "canonical", href: "/kontakt" }],
   }),
   component: Kontakt,
 });
+
 
 const inputClass =
   "w-full rounded-lg border border-input bg-background px-3.5 py-3 text-base md:py-2.5 md:text-sm outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20";

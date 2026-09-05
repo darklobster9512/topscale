@@ -10,21 +10,25 @@ import { jobs } from "@/data/jobs";
 export const Route = createFileRoute("/karriere/")({
   head: () => ({
     meta: [
-      { title: "Karriere – Stellenangebote bei der Topscale GmbH" },
+      { title: "Karriere & Stellenangebote in Hamburg | Topscale" },
       {
         name: "description",
         content:
-          "Offene Stellen bei der Topscale GmbH in Hamburg: IT-Consulting, Softwareentwicklung, Projektmanagement und Werkstudium im Qualitätsmanagement.",
+          "Offene Stellen bei der Topscale GmbH: IT-Consulting, Softwareentwicklung, Projektmanagement, Qualitätsmanagement und Online-Prozesstests.",
       },
       { property: "og:title", content: "Karriere bei der Topscale GmbH" },
       {
         property: "og:description",
         content: "Offene Stellen in Hamburg – hybrid, unbefristet und mit echter Verantwortung.",
       },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/karriere" },
     ],
+    links: [{ rel: "canonical", href: "/karriere" }],
   }),
   component: Karriere,
 });
+
 
 const benefits = [
   { icon: Clock, title: "Flexibel arbeiten", text: "Gleitzeit und bis zu drei Tage Homeoffice pro Woche." },

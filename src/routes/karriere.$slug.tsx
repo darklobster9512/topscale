@@ -24,7 +24,7 @@ export const Route = createFileRoute("/karriere/$slug")({
     const { job } = loaderData;
     return {
       meta: [
-        { title: `${job.title} – Karriere bei der Topscale GmbH` },
+        { title: `${job.title} – Karriere bei Topscale` },
         { name: "description", content: job.summary },
         { property: "og:title", content: `${job.title} – Topscale GmbH` },
         { property: "og:description", content: job.summary },
