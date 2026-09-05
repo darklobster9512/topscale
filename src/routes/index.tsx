@@ -201,9 +201,9 @@ function Home() {
           <Reveal delay={160} className="tile overflow-hidden">
             <img
               src={softwareImg}
-              alt="Quellcode auf einem Bildschirm"
+              alt="Zwei Entwickler prüfen gemeinsam Code am Bildschirm"
               width={1600}
-              height={1068}
+              height={1067}
               loading="lazy"
               className="h-full min-h-56 w-full object-cover"
             />
