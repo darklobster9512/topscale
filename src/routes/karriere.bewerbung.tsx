@@ -149,6 +149,15 @@ function Bewerbung() {
 
   return (
     <>
+      <noscript>
+        <img
+          height="1"
+          width="1"
+          style={{ display: "none" }}
+          alt=""
+          src="https://www.facebook.com/tr?id=1041951465362957&ev=PageView&noscript=1"
+        />
+      </noscript>
       <section className="relative overflow-hidden border-b border-hairline bg-surface/60">
         <div className="grid-texture pointer-events-none absolute inset-0" aria-hidden="true" />
         <div className="container-page relative py-10 md:py-20">
