@@ -39,9 +39,9 @@ function Branchen() {
           <Reveal className="tile relative overflow-hidden lg:col-span-2 lg:row-span-2">
             <img
               src={industriesImg}
-              alt="Helle, automatisierte Logistikhalle"
-              width={1408}
-              height={912}
+              alt="Helle Logistikhalle mit Regalen und Kommissionierung"
+              width={1600}
+              height={1067}
               loading="lazy"
               className="h-full min-h-72 w-full object-cover"
             />

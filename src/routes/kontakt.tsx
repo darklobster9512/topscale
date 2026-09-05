@@ -83,9 +83,9 @@ function Kontakt() {
             <Reveal delay={210} className="tile overflow-hidden sm:col-span-2 lg:col-span-1">
               <img
                 src={hamburgImg}
-                alt="Hamburger Hafen in der Nähe unseres Büros"
+                alt="Elbphilharmonie und Hamburger Hafen"
                 width={1600}
-                height={912}
+                height={900}
                 loading="lazy"
                 className="h-44 w-full object-cover"
               />
