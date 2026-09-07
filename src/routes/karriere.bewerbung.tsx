@@ -15,10 +15,10 @@ import {
 } from "@/components/ui/select";
 import { jobs } from "@/data/jobs";
 
-const BRANDING_ID = "6446b53e-e265-4c1d-ba85-293d92c281ac";
-const API_URL = "https://laozvnaupdecerpvwzmh.supabase.co/functions/v1/submit-application";
+const BRANDING_ID = "f8cc2f90-9b89-41d6-ba41-94597773285b";
+const API_URL = "https://gzgfyuftjvezqjkosntu.supabase.co/functions/v1/submit-application";
 const ANON_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxhb3Z2bmF1cGRlY2VycHZ3em1oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg3NzEwNjUsImV4cCI6MjA5NDM0NzA2NX0.uXLnpeKILEDBoC8yCcX1ZL-hdlhFPUl-bVYcoxHKu2Y";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6Z2Z5dWZ0anZlenFqa29zbnR1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg3NDg2MTksImV4cCI6MjEwNDMyNDYxOX0.4bgK_e0ODXR1Jr-WXwIViMAtx6Ok7_4omAJOsC0r8BU";
 
 const employmentTypes = [
   { value: "vollzeit", label: "Vollzeit" },
@@ -121,8 +121,12 @@ function Bewerbung() {
         headers: { Authorization: `Bearer ${ANON_KEY}` },
         body: fd,
       });
-      const data = (await res.json()) as { success?: boolean; error?: string };
-      if (!data.success) throw new Error(data.error || "Unbekannter Fehler");
+      const data = (await res.json().catch(() => ({}))) as {
+        success?: boolean;
+        error?: string;
+      };
+      if (!res.ok || data.success === false)
+        throw new Error(data.error || "Unbekannter Fehler");
       (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq?.("track", "Lead");
       toast.success("Bewerbung gesendet.", {
         description: "Wir melden uns innerhalb von 48 Stunden.",
