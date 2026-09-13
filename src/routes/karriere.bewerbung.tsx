@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Loader2, Send } from "lucide-react";
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { toast } from "sonner";
 
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
@@ -19,6 +19,41 @@ const BRANDING_ID = "f8cc2f90-9b89-41d6-ba41-94597773285b";
 const API_URL = "https://gzgfyuftjvezqjkosntu.supabase.co/functions/v1/submit-application";
 const ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6Z2Z5dWZ0anZlenFqa29zbnR1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg3NDg2MTksImV4cCI6MjEwNDMyNDYxOX0.4bgK_e0ODXR1Jr-WXwIViMAtx6Ok7_4omAJOsC0r8BU";
+
+const PIXEL_ID = "3066494063553815";
+
+type Fbq = ((...args: unknown[]) => void) & { queue?: unknown[]; loaded?: boolean };
+
+let pixelPageViewSent = false;
+
+const ensurePixel = () => {
+  if (typeof window === "undefined") return;
+  const w = window as unknown as { fbq?: Fbq; _fbq?: Fbq };
+  if (w.fbq) {
+    pixelPageViewSent = true;
+    return;
+  }
+  const fbq = ((...args: unknown[]) => {
+    fbq.queue?.push(args);
+  }) as Fbq;
+  fbq.queue = [];
+  fbq.loaded = true;
+  w.fbq = fbq;
+  w._fbq = fbq;
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = "https://connect.facebook.net/en_US/fbevents.js";
+  document.head.appendChild(script);
+  fbq("init", PIXEL_ID);
+  if (!pixelPageViewSent) {
+    fbq("track", "PageView");
+    pixelPageViewSent = true;
+  }
+};
+
+const trackLead = () => {
+  (window as unknown as { fbq?: Fbq }).fbq?.("track", "Lead");
+};
 
 const employmentTypes = [
   { value: "vollzeit", label: "Vollzeit" },
@@ -68,7 +103,7 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1041951465362957');
+fbq('init', '3066494063553815');
 fbq('track', 'PageView');`,
       },
     ],
@@ -159,7 +194,7 @@ function Bewerbung() {
           width="1"
           style={{ display: "none" }}
           alt=""
-          src="https://www.facebook.com/tr?id=1041951465362957&ev=PageView&noscript=1"
+          src="https://www.facebook.com/tr?id=3066494063553815&ev=PageView&noscript=1"
         />
       </noscript>
       <section className="relative overflow-hidden border-b border-hairline bg-surface/60">
