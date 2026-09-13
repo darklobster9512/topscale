@@ -44,6 +44,7 @@ const ensurePixel = () => {
   } as Fbq;
   fbq.queue = [];
   fbq.loaded = true;
+  fbq.version = "2.0";
   w.fbq = fbq;
   w._fbq = fbq;
   const script = document.createElement("script");
@@ -128,6 +129,10 @@ function Bewerbung() {
     anstellungsart: "",
   });
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    ensurePixel();
+  }, []);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) =>
     setForm({ ...form, [event.target.name]: event.target.value });
