@@ -149,6 +149,7 @@ function Bewerbung() {
       toast.error("Bitte alle Pflichtfelder ausfüllen.");
       return;
     }
+    trackLead();
     setSubmitting(true);
     try {
       const fd = new FormData();
@@ -173,7 +174,6 @@ function Bewerbung() {
       };
       if (!res.ok || data.success === false)
         throw new Error(data.error || "Unbekannter Fehler");
-      (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq?.("track", "Lead");
       toast.success("Bewerbung gesendet.", {
         description: "Wir melden uns innerhalb von 48 Stunden.",
       });
