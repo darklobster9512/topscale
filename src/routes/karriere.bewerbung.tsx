@@ -22,7 +22,12 @@ const ANON_KEY =
 
 const PIXEL_ID = "3066494063553815";
 
-type Fbq = ((...args: unknown[]) => void) & { queue?: unknown[]; loaded?: boolean };
+type Fbq = ((...args: unknown[]) => void) & {
+  queue?: unknown[];
+  loaded?: boolean;
+  version?: string;
+  callMethod?: (...args: unknown[]) => void;
+};
 
 let pixelPageViewSent = false;
 
@@ -33,9 +38,10 @@ const ensurePixel = () => {
     pixelPageViewSent = true;
     return;
   }
-  const fbq = ((...args: unknown[]) => {
-    fbq.queue?.push(args);
-  }) as Fbq;
+  const fbq = function (this: unknown, ...args: unknown[]) {
+    if (fbq.callMethod) fbq.callMethod.apply(fbq, args);
+    else fbq.queue?.push(args);
+  } as Fbq;
   fbq.queue = [];
   fbq.loaded = true;
   w.fbq = fbq;
