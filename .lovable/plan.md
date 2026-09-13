@@ -1,28 +1,25 @@
-# Warum 0 Leads im Meta Ads Manager – Prüfung und Absicherung
+# Meta-Tracking: Abweichungen zum Referenzprojekt beheben
 
-Der Pixel-Code (ID 1041951465362957) und das Lead-Ereignis sind auf `/karriere/bewerbung` vorhanden: das Snippet steckt im Seitenkopf dieser Seite, das Zählbild für Besucher ohne JavaScript ist im Seiteninhalt, und beim erfolgreichen Absenden wird `Lead` gemeldet. Es fehlt also nichts – trotzdem kommt bei Meta nichts an. Dafür gibt es drei realistische Ursachen, die der Reihe nach geprüft und behoben werden.
+Kurze Antwort: **nein, es ist nicht 1:1 wie im Referenzprojekt.** Pixel-Code und Lead-Ereignis sind eingebaut, aber an drei Punkten anders – und jeder davon kann erklären, warum im Ads Manager 0 Leads stehen.
 
-## Was geprüft wird
+## Die drei Unterschiede
 
-1. **Kommt eine Bewerbung überhaupt durch?** `Lead` wird nur bei erfolgreicher Übermittlung gemeldet. Die Übermittlungsadresse wurde zuletzt auf das neue System umgestellt. Ich sende eine Testbewerbung im Browser und schaue, ob die Antwort in Ordnung ist. Schlägt sie fehl, gibt es auch nie ein Lead – dann ist das die Ursache.
-2. **Feuert das Ereignis technisch?** Im Browser wird kontrolliert, ob beim Absenden ein Aufruf an `facebook.com/tr?...ev=Lead` rausgeht.
-3. **Kommt der Besucher über einen internen Klick auf die Seite?** Wechselt jemand innerhalb der Website auf die Bewerbungsseite (z. B. über „Jetzt bewerben"), kann der Pixel-Code je nach Ablauf nicht neu geladen werden. Dann fehlt sowohl Seitenaufruf als auch Lead. Das wird nachgemessen.
+1. **Andere Pixel-Nummer.** Referenzprojekt: `1055052437112922`. Ihre Seite: `1041951465362957`. Wenn Ihre Anzeigen auf die Nummer des Referenzprojekts optimieren, landen Ihre Ereignisse in einem anderen Konto und tauchen dort nie auf.
+2. **Lead wird zu spät gemeldet.** Im Referenzprojekt wird „Lead" direkt beim Klick auf „Bewerbung senden" gemeldet (nach der Pflichtfeldprüfung), unabhängig davon, ob die Übermittlung klappt. Bei Ihnen erst nach erfolgreicher Antwort der Schnittstelle – schlägt die fehl, gibt es nie ein Lead.
+3. **Tracking nur auf einer Seite.** Im Referenzprojekt läuft der Pixel auf allen Seiten und meldet bei jedem Seitenwechsel einen Seitenaufruf. Bei Ihnen ausschließlich auf `/karriere/bewerbung` (das war Ihr ausdrücklicher Wunsch).
 
-## Was gebaut wird
+## Was ich ändere
 
-- Der Pixel wird zusätzlich fest in der Bewerbungsseite initialisiert, sobald sie angezeigt wird – also auch bei internen Seitenwechseln, nicht nur beim direkten Aufruf aus der Anzeige. Doppeltes Zählen wird verhindert.
-- `Lead` wird zuverlässig genau einmal pro erfolgreicher Bewerbung gemeldet.
-- Falls die Übermittlung scheitert, bekommen Sie die genaue Fehlermeldung genannt, damit die Ursache klar ist.
+- Lead-Meldung an dieselbe Stelle wie im Referenzprojekt: direkt beim Absenden nach der Pflichtfeldprüfung.
+- Der Pixel wird auch dann korrekt geladen, wenn man innerhalb der Website auf die Bewerbungsseite klickt (nicht nur beim direkten Aufruf aus der Anzeige) – ohne doppelte Zählung.
+- Die Pixel-Nummer lasse ich zunächst wie bisher. Sagen Sie mir, welche Nummer im Ads Manager als Ihre geführt wird; wenn es `1055052437112922` ist, tausche ich sie mit.
 
-## Wichtig zum Livegang
+## Wichtig
 
-Änderungen am Tracking wirken erst in der veröffentlichten bzw. auf Ihren Server ausgelieferten Fassung. Wenn die Seite auf Ihrem Server seit dem Einbau des Pixels nicht neu ausgeliefert wurde, läuft dort noch die alte Version ohne Tracking – das allein würde 0 Leads erklären. Bitte nach dieser Anpassung neu ausliefern.
-
-Zusätzlich in Ihrem Meta-Konto zu prüfen (kann ich nicht von hier sehen): dass die Bewerbungsseite im Pixel-Test „Testereignisse" auftaucht und dass die Kampagne auf ein Lead-Ereignis dieses Pixels optimiert.
+Tracking wirkt erst in der neu veröffentlichten bzw. auf Ihren Server ausgelieferten Fassung. Wurde seit dem Einbau des Pixels nicht neu ausgeliefert, läuft dort noch die Version ohne Tracking – das allein wären 0 Leads.
 
 ## Technische Details
 
-- `src/routes/karriere.bewerbung.tsx`: Pixel-Snippet bleibt als `scripts`-Eintrag im `head()`; ergänzend ein `useEffect` in der Komponente, das bei fehlendem `window.fbq` das Skript `https://connect.facebook.net/en_US/fbevents.js` nachlädt, `fbq('init', '1041951465362957')` ausführt und einmalig `PageView` sendet (Guard über ein Modul-Flag, damit bei direktem Aufruf kein zweiter PageView entsteht).
-- Lead-Aufruf bleibt im Submit-Handler nach erfolgreicher Antwort; Absicherung gegen Mehrfachversand über einen `useRef`.
-- Fehlerpfad: Statuscode und Antworttext des Endpunkts in die Fehlermeldung aufnehmen.
-- Verifikation per Playwright unter `/tmp/browser/pix2/`: Netzwerkanfragen `ev=PageView` und `ev=Lead` mitschneiden, einmal bei direktem Aufruf und einmal nach internem Klick von `/karriere/online-prozesstester`.
+- `src/routes/karriere.bewerbung.tsx`: `fbq('track','Lead')` von nach der Erfolgsprüfung nach oben in den Submit-Handler direkt hinter die Pflichtfeldprüfung verschieben (wie `src/pages/Bewerbung.tsx:44` im Referenzprojekt).
+- Ergänzend `useEffect` in der Komponente: bei fehlendem `window.fbq` `https://connect.facebook.net/en_US/fbevents.js` nachladen, `fbq('init', …)` und einmalig `PageView` senden; Modul-Flag als Guard gegen doppelten PageView beim direkten Aufruf (das Snippet im `head()` bleibt).
+- Verifikation per Playwright unter `/tmp/browser/pix2/`: Anfragen an `facebook.com/tr` mitschneiden – `ev=PageView` bei direktem Aufruf und nach internem Klick, `ev=Lead` beim Absenden (Schnittstellen-Aufruf im Test abgefangen, damit keine echte Bewerbung entsteht).
